@@ -1,0 +1,8 @@
+{
+  "detection_confidence": 0.5,
+  "presence_confidence": 0.5,
+  "tracking_confidence": 0.5,
+  "min_visibility": 0.5,
+  "ema_alpha": 0.4,
+  "ema_max_gap_seconds": 0.5
+}
