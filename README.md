@@ -24,7 +24,6 @@ inputs. The console reports processed frames, detected poses and complete vector
 python -m exercise_analysis.ui.pose_demo --video /path/to/exercise.mp4
 python -m exercise_analysis.ui.pose_demo --webcam 0
 python -m exercise_analysis.ui.pose_demo --video /path/to/exercise.mp4 --headless
-python -m unittest discover -s tests -v
 ```
 
 Use `--model PATH` for an alternate local asset and `--config PATH` for a copy
@@ -39,3 +38,34 @@ Run `python3 scripts/audit_dataset.py /path/to/exercise_angles.csv` for a
 JSON report. Download instructions and the verified hash are in the
 [dataset audit](docs/dataset_audit.md). The audit and its synthetic-fixture
 tests use only the Python standard library.
+
+## Train or load the classical classifier
+
+Activate the virtual environment and install `python -m pip install -r requirements-ml.txt`.
+With both dependency sets installed, run the full suite with
+`python -m unittest discover -s tests -v`.
+Follow the [dataset audit](docs/dataset_audit.md) to provision the verified CSV.
+From the repository root, use a new output directory for each training run.
+
+```bash
+python -m scripts.train_baselines data/exercise_angles.csv artifacts/kaggle-frame-v1
+python -m scripts.evaluate_classifier artifacts/kaggle-frame-v1 72.77 164.86 148.86 148.23 170.01
+```
+
+The directory contains `model.joblib`, `metadata.json` and `split.json`. The
+second command loads a trusted local bundle and predicts one frame offline.
+For application use, load the classifier once and pass raw extractor results.
+
+```python
+from pathlib import Path
+from exercise_analysis.classification.bundle import Classifier
+from exercise_analysis.features.joint_angles import extract
+
+classifier = Classifier.load(Path("artifacts/kaggle-frame-v1"))
+# In the frame loop, pose is the PoseFrame from the MediaPipe adapter.
+label = classifier.predict(extract(pose, min_visibility=0.5))
+```
+
+Missing angles yield `None`. The adapter rejects EMA frames and incompatible
+bundle schemas. See the [model results](docs/model_results.md) for the selected
+artifact checksum, validation comparison and limitations.
