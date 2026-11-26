@@ -1,0 +1,445 @@
+{
+  "completed_utc": "2026-11-26T14:06:25.929782+00:00",
+  "code_commit": "c3765038067ae0a61676100e451d7c22c3f151f0",
+  "input": {
+    "schema_id": "kaggle-v1-left-joint5",
+    "features": [
+      "Shoulder_Angle",
+      "Elbow_Angle",
+      "Hip_Angle",
+      "Knee_Angle",
+      "Ankle_Angle"
+    ],
+    "units": "degrees",
+    "preprocessing": "raw"
+  },
+  "label_map": {
+    "Jumping Jacks": "Jumping Jack",
+    "Pull ups": "Pull-up",
+    "Push Ups": "Push-up",
+    "Russian twists": "Russian Twist",
+    "Squats": "Squat"
+  },
+  "matrix_label_order": [
+    "Jumping Jack",
+    "Pull-up",
+    "Push-up",
+    "Russian Twist",
+    "Squat"
+  ],
+  "dataset_sha256": "33d1e8873c0b27b853e15ab97092d2841b3975e6f3e32184b7b14385f3555ed3",
+  "split_sha256": "64574fd671c6dedca00f271139efc28fd435cecb3601ca0e6314b0b151d1649f",
+  "split_counts": {
+    "train": 21723,
+    "validation": 4655,
+    "test": 4655
+  },
+  "model_sha256": "e2f71f317c5988ff8f0a2e306abf649817cc69b79c8e51ae16d4d523aaa173b6",
+  "config": {
+    "seed": 42,
+    "holdout_fraction": 0.3,
+    "test_share_of_holdout": 0.5,
+    "macro_f1_tie_tolerance": 0.001,
+    "latency_samples": 256,
+    "random_forest": {
+      "n_estimators": 100,
+      "n_jobs": 1
+    },
+    "svm": {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": "scale"
+    },
+    "knn": {
+      "n_neighbors": 5,
+      "metric": "euclidean",
+      "n_jobs": 1
+    }
+  },
+  "selected": "random_forest",
+  "validation": {
+    "random_forest": {
+      "accuracy": 0.9516648764769066,
+      "macro_f1": 0.9473834750997476,
+      "per_class": {
+        "Jumping Jack": {
+          "precision": 0.954140127388535,
+          "recall": 0.9590268886043534,
+          "f1-score": 0.9565772669220945,
+          "support": 781.0
+        },
+        "Pull-up": {
+          "precision": 0.9301868239921337,
+          "recall": 0.9469469469469469,
+          "f1-score": 0.9384920634920635,
+          "support": 999.0
+        },
+        "Push-up": {
+          "precision": 0.9628400796284008,
+          "recall": 0.990443686006826,
+          "f1-score": 0.9764468371467026,
+          "support": 1465.0
+        },
+        "Russian Twist": {
+          "precision": 0.9683544303797469,
+          "recall": 0.9272727272727272,
+          "f1-score": 0.9473684210526315,
+          "support": 660.0
+        },
+        "Squat": {
+          "precision": 0.9411764705882353,
+          "recall": 0.896,
+          "f1-score": 0.9180327868852459,
+          "support": 750.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          749,
+          22,
+          5,
+          1,
+          4
+        ],
+        [
+          13,
+          946,
+          26,
+          2,
+          12
+        ],
+        [
+          4,
+          3,
+          1451,
+          1,
+          6
+        ],
+        [
+          9,
+          12,
+          7,
+          612,
+          20
+        ],
+        [
+          10,
+          34,
+          18,
+          16,
+          672
+        ]
+      ],
+      "latency": {
+        "median_ms": 3.324212,
+        "p95_ms": 4.51512675
+      },
+      "serialized_bytes": 5289011
+    },
+    "svm": {
+      "accuracy": 0.872610096670247,
+      "macro_f1": 0.8569454531743543,
+      "per_class": {
+        "Jumping Jack": {
+          "precision": 0.8234597156398105,
+          "recall": 0.8898847631241997,
+          "f1-score": 0.8553846153846154,
+          "support": 781.0
+        },
+        "Pull-up": {
+          "precision": 0.8155893536121673,
+          "recall": 0.8588588588588588,
+          "f1-score": 0.8366650414431984,
+          "support": 999.0
+        },
+        "Push-up": {
+          "precision": 0.9497354497354498,
+          "recall": 0.9802047781569966,
+          "f1-score": 0.9647295935505542,
+          "support": 1465.0
+        },
+        "Russian Twist": {
+          "precision": 0.9743589743589743,
+          "recall": 0.806060606060606,
+          "f1-score": 0.8822553897180763,
+          "support": 660.0
+        },
+        "Squat": {
+          "precision": 0.7717546362339515,
+          "recall": 0.7213333333333334,
+          "f1-score": 0.7456926257753274,
+          "support": 750.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          695,
+          79,
+          3,
+          2,
+          2
+        ],
+        [
+          43,
+          858,
+          28,
+          2,
+          68
+        ],
+        [
+          19,
+          6,
+          1436,
+          3,
+          1
+        ],
+        [
+          15,
+          14,
+          10,
+          532,
+          89
+        ],
+        [
+          72,
+          95,
+          35,
+          7,
+          541
+        ]
+      ],
+      "latency": {
+        "median_ms": 0.5987294999999999,
+        "p95_ms": 1.0013665
+      },
+      "serialized_bytes": 359948
+    },
+    "knn": {
+      "accuracy": 0.9426423200859291,
+      "macro_f1": 0.9359319306934811,
+      "per_class": {
+        "Jumping Jack": {
+          "precision": 0.9416243654822335,
+          "recall": 0.9500640204865557,
+          "f1-score": 0.9458253664754621,
+          "support": 781.0
+        },
+        "Pull-up": {
+          "precision": 0.935678391959799,
+          "recall": 0.9319319319319319,
+          "f1-score": 0.9338014042126379,
+          "support": 999.0
+        },
+        "Push-up": {
+          "precision": 0.964095744680851,
+          "recall": 0.9897610921501706,
+          "f1-score": 0.9767598518019536,
+          "support": 1465.0
+        },
+        "Russian Twist": {
+          "precision": 0.9352850539291218,
+          "recall": 0.9196969696969697,
+          "f1-score": 0.9274255156608098,
+          "support": 660.0
+        },
+        "Squat": {
+          "precision": 0.9151599443671766,
+          "recall": 0.8773333333333333,
+          "f1-score": 0.8958475153165418,
+          "support": 750.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          742,
+          22,
+          6,
+          3,
+          8
+        ],
+        [
+          22,
+          931,
+          19,
+          8,
+          19
+        ],
+        [
+          4,
+          3,
+          1450,
+          1,
+          7
+        ],
+        [
+          8,
+          10,
+          8,
+          607,
+          27
+        ],
+        [
+          12,
+          29,
+          21,
+          30,
+          658
+        ]
+      ],
+      "latency": {
+        "median_ms": 1.364424,
+        "p95_ms": 2.75616725
+      },
+      "serialized_bytes": 1806875
+    }
+  },
+  "test": {
+    "accuracy": 0.9501611170784103,
+    "macro_f1": 0.9454440156590774,
+    "per_class": {
+      "Jumping Jack": {
+        "precision": 0.9609882964889467,
+        "recall": 0.9450127877237852,
+        "f1-score": 0.9529335912314636,
+        "support": 782.0
+      },
+      "Pull-up": {
+        "precision": 0.9254170755642787,
+        "recall": 0.943943943943944,
+        "f1-score": 0.9345887016848364,
+        "support": 999.0
+      },
+      "Push-up": {
+        "precision": 0.9654485049833887,
+        "recall": 0.9924863387978142,
+        "f1-score": 0.9787807342539575,
+        "support": 1464.0
+      },
+      "Russian Twist": {
+        "precision": 0.9713831478537361,
+        "recall": 0.924357034795764,
+        "f1-score": 0.9472868217054263,
+        "support": 661.0
+      },
+      "Squat": {
+        "precision": 0.9236016371077762,
+        "recall": 0.9038718291054739,
+        "f1-score": 0.9136302294197031,
+        "support": 749.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        739,
+        30,
+        3,
+        3,
+        7
+      ],
+      [
+        13,
+        943,
+        17,
+        6,
+        20
+      ],
+      [
+        1,
+        2,
+        1453,
+        2,
+        6
+      ],
+      [
+        3,
+        11,
+        13,
+        611,
+        23
+      ],
+      [
+        13,
+        33,
+        19,
+        7,
+        677
+      ]
+    ]
+  },
+  "estimator_params": {
+    "random_forest": {
+      "random_forest": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": null,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 100,
+        "n_jobs": 1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    "svm": {
+      "standardscaler": {
+        "copy": true,
+        "with_mean": true,
+        "with_std": true
+      },
+      "svc": {
+        "C": 1.0,
+        "break_ties": false,
+        "cache_size": 200,
+        "class_weight": null,
+        "coef0": 0.0,
+        "decision_function_shape": "ovr",
+        "degree": 3,
+        "gamma": "scale",
+        "kernel": "rbf",
+        "max_iter": -1,
+        "probability": false,
+        "random_state": null,
+        "shrinking": true,
+        "tol": 0.001,
+        "verbose": false
+      }
+    },
+    "knn": {
+      "standardscaler": {
+        "copy": true,
+        "with_mean": true,
+        "with_std": true
+      },
+      "kneighborsclassifier": {
+        "algorithm": "auto",
+        "leaf_size": 30,
+        "metric": "euclidean",
+        "metric_params": null,
+        "n_jobs": 1,
+        "n_neighbors": 5,
+        "p": 2,
+        "weights": "uniform"
+      }
+    }
+  },
+  "evaluation_scope": "within-dataset stratified frame-level split",
+  "system": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.4.2",
+    "threadpoolctl": "3.6.0"
+  }
+}
