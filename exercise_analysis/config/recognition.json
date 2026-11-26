@@ -1,0 +1,8 @@
+{
+  "min_score": 0.60,
+  "min_margin": 0.25,
+  "window_seconds": 0.4,
+  "max_votes": 7,
+  "min_votes": 3,
+  "min_share": 0.60
+}

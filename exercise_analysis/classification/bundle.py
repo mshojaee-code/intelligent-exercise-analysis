@@ -9,6 +9,7 @@ from pathlib import Path
 
 import joblib
 
+from exercise_analysis.classification.prediction import Prediction
 from exercise_analysis.features.joint_angles import Angles, RawAngleFrame, SCHEMA_ID
 
 
@@ -40,14 +41,29 @@ class Classifier:
             raise ValueError("Model checksum mismatch")
         return cls(joblib.load(io.BytesIO(data)))
 
-    def predict(self, frame: RawAngleFrame) -> str | None:
+    @staticmethod
+    def _complete(frame: RawAngleFrame) -> bool:
         if not isinstance(frame, RawAngleFrame) or not isinstance(frame.angles, Angles):
             raise ValueError("Expected a raw feature frame with the V1 field order")
         if None in frame.angles:
-            return None
+            return False
         for angle in frame.angles:
             if isinstance(angle, bool) or not isinstance(angle, Real) or not isfinite(angle) or not 0 <= angle <= 180:
                 raise ValueError("Raw angles must be finite degree values in [0, 180]")
+        return True
+
+    def predict_scored(self, frame: RawAngleFrame) -> Prediction:
+        if not self._complete(frame):
+            return Prediction(None, {}, None, None)
+        probabilities = self.model.predict_proba([frame.angles])[0]
+        by_label = dict(zip(self.model.classes_, probabilities, strict=True))
+        scores = {name: float(by_label[name]) for name in LABEL_MAP.values()}
+        first, second = sorted(scores, key=scores.get, reverse=True)[:2]
+        return Prediction(first, scores, scores[first], scores[first] - scores[second])
+
+    def predict(self, frame: RawAngleFrame) -> str | None:
+        if not self._complete(frame):
+            return None
         label = str(self.model.predict([frame.angles])[0])
         if label not in LABEL_MAP.values():
             raise ValueError(f"Unexpected classifier label: {label}")

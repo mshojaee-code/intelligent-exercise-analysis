@@ -32,6 +32,36 @@ of `exercise_analysis/config/pose.json`. To include the real inference test, set
 `POSE_TEST_MODEL` to the asset path before running the suite. Ordinary tests
 use synthetic fixtures. See [project status](PROJECT_STATUS.md).
 
+## Offline exercise recognition
+
+After pose setup, install the ML requirements in the same environment. A clone
+includes the trained Random Forest in `artifacts/kaggle-frame-v1/`. Run from
+the repository root with the local pose asset provisioned above.
+
+```bash
+python -m pip install -r requirements-ml.txt
+python -m exercise_analysis.ui.pose_demo --recognize --video /path/to/exercise.mp4
+python -m exercise_analysis.ui.pose_demo --recognize --webcam 0
+python -m exercise_analysis.ui.pose_demo --recognize --video /path/to/exercise.mp4 --headless
+```
+
+The demo starts in automatic mode. The panel shows the active exercise, raw
+frame label, uncalibrated forest score and decision reason beside the skeleton
+and angle readings. Use the focused OpenCV window for keyboard input.
+
+| Key | Action |
+| --- | --- |
+| A | Return to automatic recognition |
+| 1 / 2 / 3 | Select Squat / Push-up / Pull-up |
+| 4 / 5 | Select Jumping Jack / Russian Twist |
+| q / Esc | Quit |
+
+Mode changes clear vote history. Manual selection retains the landmark
+validity warning. Headless mode runs automatic recognition to EOF and reports
+frame distributions, active label changes (including Unknown) and processing FPS.
+Use `--recognition-config PATH` to try alternate settings. The default policy
+and its validation evidence are in the [architecture](docs/architecture.md).
+
 ## Dataset audit
 
 Run `python3 scripts/audit_dataset.py /path/to/exercise_angles.csv` for a
@@ -48,7 +78,7 @@ Follow the [dataset audit](docs/dataset_audit.md) to provision the verified CSV.
 From the repository root, use a new output directory for each training run.
 
 ```bash
-python -m scripts.train_baselines data/exercise_angles.csv artifacts/kaggle-frame-v1
+python -m scripts.train_baselines data/exercise_angles.csv artifacts/kaggle-frame-v1-rebuild
 python -m scripts.evaluate_classifier artifacts/kaggle-frame-v1 72.77 164.86 148.86 148.23 170.01
 ```
 
