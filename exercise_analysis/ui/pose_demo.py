@@ -13,7 +13,8 @@ import cv2
 
 from exercise_analysis.capture.video import open_frames
 from exercise_analysis.features.joint_angles import extract
-from exercise_analysis.pose.mediapipe_adapter import PoseEstimator, vision
+from exercise_analysis.pose.mediapipe_adapter import PoseEstimator
+from exercise_analysis.ui.skeleton import draw_skeleton
 from exercise_analysis.preprocessing.ema import AngleEMA
 
 
@@ -24,19 +25,7 @@ def render(frame, pose, raw, smooth, visibility, *, recognition=False, counting=
         panel_height = 685
     canvas = cv2.copyMakeBorder(frame.bgr, 0, max(0, panel_height - height), 0, 310,
                                 cv2.BORDER_CONSTANT, value=(33, 30, 27))
-    # Keep off-frame coordinates for feature calculations. Clip only when drawing.
-    points = {name: (round(p.x * width), round(p.y * height))
-              for name, p in pose.landmarks.items() if p.reliable(visibility)}
-    for edge in vision.PoseLandmarksConnections.POSE_LANDMARKS:
-        a = points.get(vision.PoseLandmark(edge.start).name)
-        b = points.get(vision.PoseLandmark(edge.end).name)
-        if a and b:
-            visible, start, end = cv2.clipLine((0, 0, width, height), a, b)
-            if visible:
-                cv2.line(canvas, start, end, (98, 235, 170), 2, cv2.LINE_AA)
-    for x, y in points.values():
-        if 0 <= x < width and 0 <= y < height:
-            cv2.circle(canvas, (x, y), 3, (250, 245, 238), -1)
+    draw_skeleton(canvas, pose, visibility, width, height)
 
     def label(text, x, y, color=(238, 237, 232)):
         cv2.putText(canvas, text, (width + x, y), cv2.FONT_HERSHEY_SIMPLEX,

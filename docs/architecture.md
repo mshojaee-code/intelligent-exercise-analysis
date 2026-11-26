@@ -1,6 +1,6 @@
 # Runtime and training architecture
 
-The pose verification loop runs with `python -m exercise_analysis.ui.pose_demo`. Capture yields numbered BGR frames with elapsed seconds. The MediaPipe adapter emits a PoseFrame keyed by anatomical landmark name. Feature extraction returns a timestamped AngleFrame with named tuple fields in schema order and None for invalid angles. AngleEMA produces a separate frame with the same layout. Create a new tracker and smoother for each source. A future session loop owns source selection, clock, component lifetimes and resets. Process one participant and one ordered frame stream per session.
+The pose verification loop runs with `python -m exercise_analysis.ui.pose_demo`. Capture yields numbered BGR frames with elapsed seconds. The MediaPipe adapter emits a PoseFrame keyed by anatomical landmark name. Feature extraction returns a timestamped AngleFrame with named tuple fields in schema order and None for invalid angles. AngleEMA produces a separate frame with the same layout. Create a new tracker and smoother for each source. The application entry point `run.py` opens one source, estimator and local classifier. A fresh `Session` owns temporal state and consumes pose timestamps. Process one participant and one ordered frame stream per session.
 
 | Component | Input → output and ownership |
 | --- | --- |
@@ -13,7 +13,7 @@ The pose verification loop runs with `python -m exercise_analysis.ui.pose_demo`.
 | counting | Active exercise + filtered angles and any required landmark geometry → phase, normalized progress and a one-shot completed-rep event. One FSM per exercise owns cycle state. |
 | form | Exercise, phase, pose, valid angles → prioritized text cues. Each rule declares required landmarks, phase, compatible view and configured limits. |
 | ui | Frame, pose and session snapshot → rendered HUD and operator commands (auto, manual, quit). Keep scoring and count updates in the session loop. |
-| reporting | Session timestamps, active labels and completed-rep events → per-exercise totals. Write one CSV row per exercise with session ID, exercise, reps and active seconds. Exclude Unknown intervals from exercise duration. |
+| reporting | Session timestamps, active labels and completed-rep events → per-exercise totals. Write one CSV row per exercise with the session ID, active seconds, completed cycles and three quality counts. Exclude Unknown intervals from exercise duration. |
 
 ## State boundaries
 
@@ -108,3 +108,25 @@ CompletedCycle triggers exactly one structured Assessment with independent
 quality accounting. The closing posture can also seed the next cycle. The UI
 renders feedback and serializes completed assessments. [Rule definitions,
 coverage and validation](form_assessment.md)
+
+## Offline application session
+
+`run.py` owns capture, the CPU pose estimator and the optional OpenCV window.
+For each frame, `Session.step(pose, aspect)` sends raw schema angles to the
+classifier, sends the scored prediction to recognition, and supplies EMA angles
+and the active decision to the existing counter and assessor. The controller
+pairs each completion event with its assessment and returns a snapshot. The HUD
+renders this snapshot and the skeleton. Keyboard selection changes recognition
+for the next frame. Session-wide totals survive exercise and mode changes.
+
+`exercise_analysis/config/display.json` holds two durations in stream seconds.
+Ordinary form cues stay on screen for at least 0.4 s within a continuous active
+exercise. Warnings can interrupt immediately. After a completion, the last
+assessment and score panel are highlighted for 2 s. The last exercise, status
+and cue remain available while a new warning is shown. Both times affect
+presentation only. The 1120 × 630 canvas uses a letterboxed camera view.
+
+Headless runs use the same controller and CSV writer. The export checks the
+counter and assessor totals independently for each exercise. A recoverable
+interruption after processed frames attempts a partial summary. Capture and
+estimator contexts close before the final export. [Timing and CSV contract](session_reporting.md)
