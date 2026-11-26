@@ -21,3 +21,19 @@ The five excluded CSV fields have verified definitions too. In CSV order they ar
 **Validity contract.** For every feature require finite coordinates and sufficient visibility at every real landmark it uses. Make the visibility threshold configurable and calibrate on demo footage. Mark a feature missing for a failed check, absent pose or zero-length angle ray. The constructed ankle point inherits ankle validity. Any missing classifier input yields Unknown for that frame. The notebook did not gate on visibility, so evaluate abstention and retained-frame coverage on independent clips. Feed raw angles to the classifier. Keep application EMA on a separate counting/form path because the CSV has no sequence boundaries or application-level EMA.
 
 **Acceptance check for implementation.** Test known angles, off-frame joints, occlusion and degenerate rays. Compare live extractor math with an independent notebook-formula calculation on the same saved landmark frame and fixed order. Record MediaPipe version, model asset hash, orientation and input resolution. If independent recordings expose a domain mismatch, label consented or licensed videos covering all five exercises, retain subject/session/video IDs and timestamps, and re-extract training and live vectors with the same versioned implementation before retraining.
+
+## V1 implementation and measured parity
+
+The adapter uses MediaPipe Tasks Pose Landmarker in sequential VIDEO mode, CPU delegate, single pose and the local Lite float16 v1 asset. It supplies unmirrored, unscaled RGB frames. File timestamps come from decoded media position with a frame-rate fallback for unavailable or repeated positions. Webcams use monotonic elapsed time. Quantize to increasing integer milliseconds for MediaPipe only. EMA uses original elapsed seconds.
+
+The initial config follows the writer's 0.5 detection and tracking thresholds and sets pose presence and per-landmark visibility to 0.5 as demo starting points. EMA weights each valid new observation by 0.4 for moderate smoothing. Each joint resets after more than 0.5 seconds without a valid observation. Tune on target footage. These last three settings and the presence threshold have no effect on the angle formula.
+
+Measured on Debian 13 x86-64, Python 3.12.14, MediaPipe 0.10.32, OpenCV 4.11.0 and NumPy 1.26.4. The local model SHA-256 is recorded in the README. The headless demo decoded and rendered the author's unmirrored 1280×720, 25 fps squat clip through EOF (SHA-256 b9783cba7174246884865b903d78c2c2d279528a0b2be03d95a25a529b4c7b1d). All 110 frames had a detected pose and all five reliable angles. One rendered frame was visually inspected. [Test clip](https://github.com/Mrigaank-9/Pose-Estimation-AI/blob/cd900f28962085ab36492fd4d72107104c2b35f9/Test/squat.mp4)
+
+| Same-landmark comparison against independent NumPy notebook calculation | Maximum absolute difference (degrees) |
+| --- | ---: |
+| Saved synthetic fixture, five features | 1.4211e-14 |
+| Saved first real frame, five features | 2.8422e-14 |
+| All 110 real frames, five features | 5.6844e-14 |
+
+The checks use absolute tolerance 1e-12 degrees. They establish geometry parity for identical coordinates. Pose-estimator version, visibility gating and camera placement still affect which coordinates reach the extractor. Physical webcam operation and target laptop performance await hardware validation.

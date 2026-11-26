@@ -1,6 +1,6 @@
 # Runtime and training architecture
 
-The package directories reserve the following interfaces for implementation. The current entry point only reads the baseline config. A future session loop owns source selection, clock, component lifetimes and resets. Process one participant and one ordered frame stream per session.
+The pose verification loop runs with `python -m exercise_analysis.ui.pose_demo`. Capture yields numbered BGR frames with elapsed seconds. The MediaPipe adapter emits a PoseFrame keyed by anatomical landmark name. Feature extraction returns a timestamped AngleFrame with named tuple fields in schema order and None for invalid angles. AngleEMA produces a separate frame with the same layout. Create a new tracker and smoother for each source. A future session loop owns source selection, clock, component lifetimes and resets. Process one participant and one ordered frame stream per session.
 
 | Component | Input → output and ownership |
 | --- | --- |
