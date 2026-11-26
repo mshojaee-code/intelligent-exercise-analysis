@@ -62,6 +62,29 @@ frame distributions, active label changes (including Unknown) and processing FPS
 Use `--recognition-config PATH` to try alternate settings. The default policy
 and its validation evidence are in the [architecture](docs/architecture.md).
 
+## Count completed movement cycles
+
+Use the same offline setup as recognition. The counting panel shows the
+exercise being counted, its phase, movement progress, completed cycles and any
+tracking or view warning. Each completed cycle also prints its time interval.
+
+```bash
+python -m exercise_analysis.ui.pose_demo --count --video /path/to/exercise.mp4
+python -m exercise_analysis.ui.pose_demo --count --webcam 0
+python -m exercise_analysis.ui.pose_demo --count --manual Squat --headless --video /path/to/squat.mp4
+```
+
+Keys **1–5** select the exercises in the order shown above. **A** resumes
+automatic recognition. Start in the documented ready posture and keep the required
+joints in frame. Use a level side view for squats, push-ups and pull-ups. Use a
+front view for jacks and seated twists, keeping the hands together for twists.
+A short recognition gap pauses the counter. A prolonged gap requires returning
+to the start posture. Completed totals persist throughout the session.
+
+Use `--counting-config PATH` with a copy of `exercise_analysis/config/counting.json`
+to change the provisional settings. See the [counting conventions and view
+limits](docs/architecture.md#repetition-counting).
+
 ## Dataset audit
 
 Run `python3 scripts/audit_dataset.py /path/to/exercise_angles.csv` for a
