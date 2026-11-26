@@ -85,6 +85,23 @@ Use `--counting-config PATH` with a copy of `exercise_analysis/config/counting.j
 to change the provisional settings. See the [counting conventions and view
 limits](docs/architecture.md#repetition-counting).
 
+## Assess form during each cycle
+
+After the same offline setup, run from the repository root:
+
+```bash
+python -m exercise_analysis.ui.pose_demo --form --video /path/to/exercise.mp4
+python -m exercise_analysis.ui.pose_demo --form --webcam 0
+python -m exercise_analysis.ui.pose_demo --form --manual Squat --headless --video /path/to/squat.mp4
+```
+
+Form mode enables counting and recognition. Keys 1–5 select a manual exercise,
+A restores automatic mode, and q or Esc quits. The panel shows the selected
+exercise's completed and quality totals, current cue, and last assessed cycle.
+Headless output includes the phase-specific evidence for each result. Use
+`--form-config PATH` to override the provisional targets.
+[Rules, camera views and interpretation](docs/form_assessment.md)
+
 ## Dataset audit
 
 Run `python3 scripts/audit_dataset.py /path/to/exercise_angles.csv` for a
