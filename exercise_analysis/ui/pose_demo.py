@@ -16,9 +16,9 @@ from exercise_analysis.pose.mediapipe_adapter import PoseEstimator, vision
 from exercise_analysis.preprocessing.ema import AngleEMA
 
 
-def render(frame, pose, raw, smooth, visibility, *, recognition=False):
+def render(frame, pose, raw, smooth, visibility, *, recognition=False, counting=False):
     height, width = frame.bgr.shape[:2]
-    panel_height = 470 if recognition else 250
+    panel_height = 570 if counting else (470 if recognition else 250)
     canvas = cv2.copyMakeBorder(frame.bgr, 0, max(0, panel_height - height), 0, 310,
                                 cv2.BORDER_CONSTANT, value=(33, 30, 27))
     # Keep off-frame coordinates for feature calculations. Clip only when drawing.
@@ -80,7 +80,11 @@ def main():
     parser.add_argument("--recognize", action="store_true", help="Enable the offline exercise classifier")
     parser.add_argument("--bundle", type=Path, default=Path("artifacts/kaggle-frame-v1"))
     parser.add_argument("--recognition-config", type=Path, help="Override recognition.json")
+    parser.add_argument("--count", action="store_true", help="Enable recognition and count movement cycles")
+    parser.add_argument("--manual", help="Start recognition with this canonical exercise selected")
+    parser.add_argument("--counting-config", type=Path, help="Override counting.json")
     args = parser.parse_args()
+    args.recognize = args.recognize or args.count or args.manual is not None
     config = args.config or files("exercise_analysis").joinpath("config", "pose.json")
     display = not args.headless
     frames_read = poses = complete = 0
@@ -99,6 +103,12 @@ def main():
             exercises = json.loads(config_dir.joinpath("baseline.json").read_text())["exercises"]
             policy_file = args.recognition_config or config_dir.joinpath("recognition.json")
             controls = Recognition(exercises, **json.loads(policy_file.read_text()))
+            controls.select(args.manual)
+            if args.count:
+                from exercise_analysis.counting.cycles import SessionCounter
+
+                counting_file = args.counting_config or config_dir.joinpath("counting.json")
+                counter = SessionCounter(json.loads(counting_file.read_text()), visibility)
             classifier = Classifier.load(args.bundle)
             raw_counts, active_counts = Counter(), Counter()
             previous_active = None
@@ -112,7 +122,7 @@ def main():
                 pose = estimator.estimate(frame)
                 raw = extract(pose, visibility)
                 smooth = ema.update(raw)
-                canvas = render(frame, pose, raw, smooth, visibility, recognition=args.recognize)
+                canvas = render(frame, pose, raw, smooth, visibility, recognition=args.recognize, counting=args.count)
                 if args.recognize:
                     prediction = classifier.predict_scored(raw)
                     decision = controls.update(frame.seconds, prediction)
@@ -121,6 +131,17 @@ def main():
                     active_counts[decision.active] += 1
                     transitions += previous_active is not None and previous_active != decision.active
                     previous_active = decision.active
+                    if args.count:
+                        height, width = frame.bgr.shape[:2]
+                        state = counter.update(decision, pose, smooth, width / height)
+                        lines = (f"{state.exercise or 'Unknown'}   Cycles: {state.total}",
+                                 f"{state.phase}   {state.progress:.0%}", state.warning)
+                        for i, text in enumerate(lines):
+                            cv2.putText(canvas, text, (width + 12, 480 + 30*i),
+                                        cv2.FONT_HERSHEY_SIMPLEX, .53, (155, 230, 198), 1, cv2.LINE_AA)
+                        if state.event:
+                            print(f"Cycle {state.event.number}: {state.event.exercise} "
+                                  f"{state.event.started:.2f} to {state.event.completed:.2f} s")
                 frames_read += 1
                 poses += bool(pose.landmarks)
                 complete += None not in raw.angles
@@ -142,6 +163,8 @@ def main():
             cv2.destroyAllWindows()
     print(f"Frames: {frames_read} | Pose detected: {poses} | Complete raw vectors: {complete}")
 
+    if args.count:
+        print(json.dumps({"completed_cycles": counter.totals}))
     if args.recognize:
         print(json.dumps({"raw": raw_counts, "active": active_counts, "active_changes": transitions,
                           "processing_fps": round(frames_read / elapsed, 2)}, indent=2))

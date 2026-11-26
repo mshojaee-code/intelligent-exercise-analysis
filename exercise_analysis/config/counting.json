@@ -1,0 +1,12 @@
+{
+  "max_gap_seconds": 0.65,
+  "switch_confirm_seconds": 0.20,
+  "max_side_hip_width_over_torso": 0.65,
+  "min_front_hip_width_over_torso": 0.30,
+  "Squat": {"start_deg": 160, "depart_deg": 145, "peak_deg": 120},
+  "Push-up": {"start_deg": 155, "depart_deg": 140, "peak_deg": 100},
+  "Pull-up": {"start_deg": 150, "depart_deg": 135, "peak_deg": 90},
+  "Jumping Jack": {"closed_span": 1.4, "open_span": 2.0},
+  "Russian Twist": {"center_span": 0.35, "side_span": 0.9, "max_hand_span": 1.0,
+                    "require_opposite_side": true}
+}

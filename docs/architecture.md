@@ -38,3 +38,63 @@ Recognition.select sets the operator's choice and clears history on changes. Eac
 ### Evidence for the initial score gates
 
 Using only the 4,655 saved validation indices and the committed forest, the ungated maximum-score label was correct on 4,430 frames. With minimum score 0.60 and minimum margin 0.25, 4,405 frames passed (94.6% coverage), including 4,286 correct (97.3% of accepted frames). Raising the score threshold to 0.70 retained 4,227 frames, including 4,157 correct. The 0.60 setting preserves more coverage for the demo. These are selective frame-level results on known classes. The table lacks temporal grouping and examples labeled Unknown, so it cannot establish transition latency, out-of-distribution detection or calibrated probabilities.
+
+## Repetition counting
+
+One SessionCounter owns five independent movement state machines and a separate
+map of completed totals. For each synchronized timestamp it takes the recognition
+Decision, full PoseFrame, EMA AngleFrame and frame aspect ratio. The classifier
+continues to consume raw angles. All counters begin in Find start. The thresholds
+below are initial engineering settings in `exercise_analysis/config/counting.json`.
+
+| Counter | Required landmarks and view | Phase transitions and hysteresis |
+| --- | --- | --- |
+| Squat | Both hips, left shoulder, knee and ankle, side view | Standing at EMA left knee ≥160°. Descending at ≤145°. Latch Deep at ≤120°. Returning at ≥145°, complete at ≥160°. |
+| Push-up | Both hips, left shoulder, elbow and wrist, side view with torso closer to horizontal than vertical (45° included) | Extended at EMA left elbow ≥155°. Lowering at ≤140°. Latch Bent at ≤100°. Returning at ≥140°, complete at ≥155°. |
+| Pull-up | Same joints as push-up, side or near-side view with wrist above shoulder | Hanging at EMA left elbow ≥150°. Pulling at ≤135°. Latch Upper at ≤90°. Returning at ≥135°, complete at ≥150°. Measures arm excursion only. |
+| Jumping Jack | Both shoulders, hips, wrists and ankles, front view | Closed requires ankle span ≤1.4 hip widths and both wrists at or below both hips. Opening is the intermediate posture. Open requires span ≥2.0 and both wrists above both shoulders. The next intermediate posture is Closing. Complete on Closed. |
+| Russian Twist | Both shoulders, hips and wrists, seated facing camera with joined hands | Use signed horizontal wrist-midpoint offset from hip midpoint in hip widths. Center at absolute offset ≤0.35. Latch First side at ≥0.90 in either direction. Cross to ≥0.90 on the opposite side, then return to Center to complete. With `require_opposite_side=false`, one center–side–center excursion counts instead. |
+
+For the three flexion counters, progress is the fraction of the start-to-peak
+angle excursion, clamped to [0, 1]. Intermediate angles alone cannot finish a
+cycle. For jacks and twists the panel shows discrete posture milestones.
+
+**Measurement validity.** Use the pose visibility threshold (default 0.5) and
+finite, in-frame coordinates for every required landmark, including in manual
+mode. The elbow and knee angles retain the feature extractor's image-normalized
+2D geometry and its aspect-ratio dependence. For separate view, spread and hand
+distance checks, scale x by width/height before computing distances. Normalize
+horizontal hip span by the projected left shoulder-to-hip length. Require a
+ratio ≤0.65 for side-view counters and ≥0.30 for front-view counters. Reject
+zero-length torsos and, for twists, wrist separation greater than one hip width.
+These checks detect some unsuitable views. Foreshortening, camera tilt and
+occlusion can still distort measurements. Twist tracks lateral hand travel.
+Independent arm swings can mimic a twist, and the quantity cannot establish
+3D trunk rotation. Set up the exercise and view before counting.
+
+**Continuity.** A brief Unknown label, missing measurement or pending exercise
+change freezes the phase and emits a warning. More than 0.65 s since the last
+accepted measurement invalidates the partial cycle, including across skipped
+frames. An automatic change while tracking requires a continuous new label for
+0.20 s. A mode change or manual exercise change immediately requires a fresh
+start. Duplicate or out-of-order timestamps are rejected. The counter accepts a
+manual label even when unrelated classifier features are missing, provided that
+the joints needed by that exercise pass their own checks.
+
+**Completion event.** CountState.event is populated once on the return to the
+start posture after the required excursion. CompletedCycle carries exercise,
+per-exercise ordinal, last observed start-posture time and completion time (both
+in stream seconds). A later form assessor can associate evidence from this interval
+with the event and maintain its own accepted/rejected totals. The cycle count
+records observed movement alone.
+
+**Verification.** Synthetic sequences exercise all five FSMs. For the 110-frame
+squat clip, visual review at five-frame intervals found one complete
+standing–squat–standing movement following an initial partial ascent. The
+provisional 115° peak gate missed that cycle (minimum EMA knee angle about 117°),
+so the demo uses 120°. On replay both automatic and manual Squat modes emitted
+one event from 1.44 to 3.36 s, with zero misses and zero extra cycles against
+that visual reference. In auto mode 43 frames were Unknown and one had active
+label Jumping Jack. These intervals produced no phase advancement. This is the
+same clip used to adjust the threshold. Real footage for the other four counters,
+independent annotations and target-webcam checks remain pending.
