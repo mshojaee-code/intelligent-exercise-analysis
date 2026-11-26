@@ -24,6 +24,10 @@ class AngleFrame:
     angles: Angles
 
 
+class RawAngleFrame(AngleFrame):
+    """Unsmoothed output of the schema-bound extractor."""
+
+
 def _angle(a, b, c):
     if a is None or b is None or c is None or a == b or b == c:
         return None
@@ -33,7 +37,7 @@ def _angle(a, b, c):
     return min(difference, 360 - difference)
 
 
-def extract(pose: PoseFrame, min_visibility: float) -> AngleFrame:
+def extract(pose: PoseFrame, min_visibility: float) -> RawAngleFrame:
     if not 0 <= min_visibility <= 1:
         raise ValueError("Visibility threshold must be between zero and one")
 
@@ -47,7 +51,7 @@ def extract(pose: PoseFrame, min_visibility: float) -> AngleFrame:
         left, ("SHOULDER", "ELBOW", "WRIST", "HIP", "KNEE", "ANKLE")
     )
     below = None if ankle is None else (ankle[0], ankle[1] + 0.1)
-    return AngleFrame(pose.seconds, Angles(
+    return RawAngleFrame(pose.seconds, Angles(
         Shoulder_Angle=_angle(hip, shoulder, elbow),
         Elbow_Angle=_angle(shoulder, elbow, wrist),
         Hip_Angle=_angle(shoulder, hip, knee),
