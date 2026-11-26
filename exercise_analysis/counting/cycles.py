@@ -152,6 +152,7 @@ class CountState:
     total: int
     warning: str
     event: CompletedCycle | None
+    cycle_started: float | None = None
 
 
 class SessionCounter:
@@ -221,4 +222,4 @@ class SessionCounter:
                     self.totals[self.active] += 1
                     event = CompletedCycle(self.active, self.totals[self.active], start, now)
         return CountState(self.active, machine.phase, machine.progress, self.totals[self.active],
-                          warning, event)
+                          warning, event, machine.started)

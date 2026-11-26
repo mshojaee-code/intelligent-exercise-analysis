@@ -98,3 +98,13 @@ that visual reference. In auto mode 43 frames were Unknown and one had active
 label Jumping Jack. These intervals produced no phase advancement. This is the
 same clip used to adjust the threshold. Real footage for the other four counters,
 independent annotations and target-webcam checks remain pending.
+
+## Phase-aware form assessment
+
+FormAssessor consumes the counter's CountState, pose, EMA angles and frame
+aspect ratio. It tracks bounded per-rule summaries for the current exercise and
+cycle start. CountState exposes the counter's existing start timestamp.
+CompletedCycle triggers exactly one structured Assessment with independent
+quality accounting. The closing posture can also seed the next cycle. The UI
+renders feedback and serializes completed assessments. [Rule definitions,
+coverage and validation](form_assessment.md)

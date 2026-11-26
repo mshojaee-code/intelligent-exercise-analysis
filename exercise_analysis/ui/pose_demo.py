@@ -1,6 +1,7 @@
 """Inspect the pose skeleton, raw classifier features and separate EMA values."""
 
 import argparse
+from dataclasses import asdict
 from collections import Counter
 from importlib.resources import files
 import json
@@ -16,9 +17,11 @@ from exercise_analysis.pose.mediapipe_adapter import PoseEstimator, vision
 from exercise_analysis.preprocessing.ema import AngleEMA
 
 
-def render(frame, pose, raw, smooth, visibility, *, recognition=False, counting=False):
+def render(frame, pose, raw, smooth, visibility, *, recognition=False, counting=False, form=False):
     height, width = frame.bgr.shape[:2]
     panel_height = 570 if counting else (470 if recognition else 250)
+    if form:
+        panel_height = 685
     canvas = cv2.copyMakeBorder(frame.bgr, 0, max(0, panel_height - height), 0, 310,
                                 cv2.BORDER_CONSTANT, value=(33, 30, 27))
     # Keep off-frame coordinates for feature calculations. Clip only when drawing.
@@ -83,7 +86,10 @@ def main():
     parser.add_argument("--count", action="store_true", help="Enable recognition and count movement cycles")
     parser.add_argument("--manual", help="Start recognition with this canonical exercise selected")
     parser.add_argument("--counting-config", type=Path, help="Override counting.json")
+    parser.add_argument("--form", action="store_true", help="Assess observable rules on counted cycles")
+    parser.add_argument("--form-config", type=Path, help="Override form.json")
     args = parser.parse_args()
+    args.count = args.count or args.form
     args.recognize = args.recognize or args.count or args.manual is not None
     config = args.config or files("exercise_analysis").joinpath("config", "pose.json")
     display = not args.headless
@@ -108,7 +114,13 @@ def main():
                 from exercise_analysis.counting.cycles import SessionCounter
 
                 counting_file = args.counting_config or config_dir.joinpath("counting.json")
-                counter = SessionCounter(json.loads(counting_file.read_text()), visibility)
+                counting_settings = json.loads(counting_file.read_text())
+                counter = SessionCounter(counting_settings, visibility)
+                if args.form:
+                    from exercise_analysis.form.assessment import FormAssessor
+                    form_file = args.form_config or config_dir.joinpath("form.json")
+                    assessor = FormAssessor(json.loads(form_file.read_text()), visibility,
+                                            counting_settings["Jumping Jack"]["open_span"])
             classifier = Classifier.load(args.bundle)
             raw_counts, active_counts = Counter(), Counter()
             previous_active = None
@@ -122,7 +134,7 @@ def main():
                 pose = estimator.estimate(frame)
                 raw = extract(pose, visibility)
                 smooth = ema.update(raw)
-                canvas = render(frame, pose, raw, smooth, visibility, recognition=args.recognize, counting=args.count)
+                canvas = render(frame, pose, raw, smooth, visibility, recognition=args.recognize, counting=args.count, form=args.form)
                 if args.recognize:
                     prediction = classifier.predict_scored(raw)
                     decision = controls.update(frame.seconds, prediction)
@@ -142,6 +154,20 @@ def main():
                         if state.event:
                             print(f"Cycle {state.event.number}: {state.event.exercise} "
                                   f"{state.event.started:.2f} to {state.event.completed:.2f} s")
+                        if args.form:
+                            assessment = assessor.update(state, pose, smooth, width / height)
+                            if assessment:
+                                print(json.dumps(asdict(assessment)))
+                            totals = assessor.totals.get(state.exercise, Counter())
+                            last = assessor.last.get(state.exercise)
+                            form_lines = (
+                                f"Good {totals['GOOD']}   Bad {totals['BAD']}   Unassessable {totals['UNASSESSABLE']}",
+                                assessor.feedback,
+                                f"Last cycle: {last.status if last else '--'}",
+                            )
+                            for i, text in enumerate(form_lines):
+                                cv2.putText(canvas, text, (width + 12, 584 + 30*i),
+                                            cv2.FONT_HERSHEY_SIMPLEX, .48, (238, 237, 232), 1, cv2.LINE_AA)
                 frames_read += 1
                 poses += bool(pose.landmarks)
                 complete += None not in raw.angles
@@ -163,6 +189,8 @@ def main():
             cv2.destroyAllWindows()
     print(f"Frames: {frames_read} | Pose detected: {poses} | Complete raw vectors: {complete}")
 
+    if args.form:
+        print(json.dumps({"quality_totals": assessor.totals}))
     if args.count:
         print(json.dumps({"completed_cycles": counter.totals}))
     if args.recognize:
