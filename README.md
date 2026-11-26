@@ -1,22 +1,48 @@
 # intelligent-exercise-analysis
 Real-time AI exercise recognition, repetition counting and form assessment using computer vision
 
-## Pose verification demo
+## Run the offline application
 
 Provision once on an Ubuntu CPU laptop with Python 3.12 and a desktop session.
 From the repository root, install the pinned MediaPipe Tasks, OpenCV and NumPy
-wheels and download the versioned Google Pose Landmarker Lite asset.
+wheels, the classifier dependencies, and the versioned Google Pose Landmarker Lite asset.
+The trained Random Forest ships in the repository.
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-pose.txt
+python -m pip install -r requirements-pose.txt -r requirements-ml.txt
 mkdir -p models
 curl -fL https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task -o models/pose_landmarker_lite.task
 echo '59929e1d1ee95287735ddd833b19cf4ac46d29bc7afddbbf6753c459690d574a  models/pose_landmarker_lite.task' | sha256sum -c -
 ```
 
-After setup, run locally offline. Choose a file or a webcam index. Press Q or
+After setup, launch the full dashboard from the repository root. The default input is webcam 0.
+
+```bash
+python run.py
+python run.py --video /path/to/exercise.mp4
+python run.py --webcam 1
+python run.py --video /path/to/squat.mp4 --manual Squat --headless --output sessions
+```
+
+Focus the window and press **H** for controls. **1–5** select Squat, Push-up,
+Pull-up, Jumping Jack or Russian Twist. **A** restores automatic recognition.
+**Q**, **Esc**, closing the window, or the end of a video finishes the session.
+Keep the whole body in view. Use a side view for squats, push-ups and pull-ups,
+and a front view for jacks and seated twists.
+
+The large green number counts GOOD repetitions across the session. Total cycles
+also includes BAD and UNASSESSABLE results. The form cues use provisional
+demonstration thresholds. The timer and active durations follow the input
+timestamps. Each run writes a five-row CSV in `sessions/` by default and prints
+its path. Use `--output DIR` to change the directory, or `--headless` to process
+without a window. The app reads the pose asset and classifier from disk and
+requires no network at runtime. [CSV fields and example](docs/session_reporting.md)
+
+## Developer pose verification demo
+
+Use a video file or webcam index to inspect pose features alone. Press Q or
 Esc to quit. The panel shows raw and EMA angles in degrees and flags unreliable
 inputs. The console reports processed frames, detected poses and complete vectors.
 
