@@ -221,3 +221,24 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local exercise datasets, licensed assets, recordings and session exports
+/data/
+/datasets/
+/models/
+/artifacts/
+/recordings/
+/sessions/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.joblib
+*.pkl
+*.onnx
+*.tflite
+*.task
+kaggle.json
+.env.*
+!.env.example
