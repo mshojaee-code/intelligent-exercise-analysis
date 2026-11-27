@@ -1,6 +1,7 @@
 """Synthetic movement traces for state and measurement tests. No video annotations."""
 
 import json
+from math import radians, tan
 from importlib.resources import files
 import unittest
 
@@ -14,10 +15,14 @@ def frame(name, value, t):
     joints = {"LEFT_HIP": (.48, .55), "RIGHT_HIP": (.51, .55),
               "LEFT_SHOULDER": (.48, .3), "LEFT_KNEE": (.5, .7),
               "LEFT_ANKLE": (.5, .9), "LEFT_WRIST": (.4, .1), "LEFT_ELBOW": (.4, .2)}
+    joints["RIGHT_SHOULDER"] = (.51, .3)
     if name == "Push-up":
-        joints["LEFT_SHOULDER"] = (.15, .55)
+        # A side-on straight plank above the wrist-to-toe support line.
+        joints.update(LEFT_SHOULDER=(.15,.55), RIGHT_SHOULDER=(.18,.55),
+                      LEFT_WRIST=(.15,.75), LEFT_ELBOW=(.15 + .10/tan(radians(max(30, value))/2),.65),
+                      LEFT_KNEE=(.70,.55), LEFT_ANKLE=(.90,.55), LEFT_FOOT_INDEX=(.93,.75))
     if name in ("Russian Twist", "Jumping Jack"):
-        joints.update(LEFT_HIP=(.42,.55), RIGHT_HIP=(.58,.55), RIGHT_SHOULDER=(.60,.3))
+        joints.update(LEFT_EYE=(.46,.20), RIGHT_EYE=(.54,.20), LEFT_HIP=(.42,.55), RIGHT_HIP=(.58,.55), RIGHT_SHOULDER=(.60,.3))
         x = .5 + .16 * value if name == "Russian Twist" else .5
         y = .1 if value == 1 else .65
         span = .4 if value else .16
@@ -59,12 +64,14 @@ class CountingTests(unittest.TestCase):
                 self.assertIsNone(self.step(name, start).event)
         self.assertEqual(set(self.session.totals.values()), {1})
 
-    def test_twist_either_direction_and_optional_short_convention(self):
+    def test_twist_either_direction_requires_opposite_side(self):
         for v in (0, -1, 0, 1, 0):
             state = self.step("Russian Twist", v)
         self.assertEqual(state.total, 1)
-        self.cfg["Russian Twist"]["require_opposite_side"] = False
         for v in (0, 1, 0):
+            state = self.step("Russian Twist", v)
+        self.assertEqual(state.total, 1)
+        for v in (-1, 0):
             state = self.step("Russian Twist", v)
         self.assertEqual(state.total, 2)
 
@@ -81,8 +88,8 @@ class CountingTests(unittest.TestCase):
     def test_short_unknown_and_unconfirmed_change_freeze_in_progress(self):
         for value in (165, 140, 110):
             self.step("Squat", value, mode="Auto")
-        self.assertEqual(self.step("Squat", 165, active="Unknown", mode="Auto").phase, "Deep")
-        self.assertEqual(self.step("Squat", 165, active="Pull-up", mode="Auto").phase, "Deep")
+        self.assertEqual(self.step("Squat", 165, active="Unknown", mode="Auto").phase, "Attempt depth")
+        self.assertEqual(self.step("Squat", 165, active="Pull-up", mode="Auto").phase, "Attempt depth")
         self.assertEqual(self.step("Squat", 165, mode="Auto").event.number, 1)
 
     def test_prolonged_unknown_and_occlusion_invalidate_cycle(self):
@@ -135,6 +142,15 @@ class CountingTests(unittest.TestCase):
             self.assertEqual(state.phase, "Opening")
         self.tick = 3
         self.assertIsNone(self.step("Jumping Jack", 0).event)
+
+    def test_too_fast_or_small_attempts_and_unfinished_returns(self):
+        for name, start, small, peak in [("Squat", 165, 140, 134), ("Push-up", 160, 135, 120)]:
+            for t, v in enumerate([start, peak, start, small, small, start, peak]):
+                pose, angles = frame(name, v, 2*self.tick + t/100)
+                state = self.session.update(Decision(name, "Manual", "", True), pose, angles, 1)
+                self.assertIsNone(state.event)
+            self.tick += 1
+            self.assertEqual(state.total, 0)
 
     def test_invalid_threshold_configuration(self):
         self.cfg["Squat"]["peak_deg"] = self.cfg["Squat"]["start_deg"]

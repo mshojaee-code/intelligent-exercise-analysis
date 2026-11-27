@@ -40,6 +40,16 @@ its path. Use `--output DIR` to change the directory, or `--headless` to process
 without a window. The app reads the pose asset and classifier from disk and
 requires no network at runtime. [CSV fields and example](docs/session_reporting.md)
 
+### What GOOD means
+
+The app judges the parallel bodyweight squat, standard full push-up, strict
+pull-up, classic jumping jack and seated Russian twist. A complete shallow
+squat or push-up can count once and receive BAD. Strict pull-ups and seated
+twists count observable attempts and receive UNASSESSABLE because this setup
+cannot verify chin clearance or torso rotation. The five HUD angle readouts use
+the classifier schema. Protocol thresholds use separately corrected image
+geometry. [Camera setup and protocol thresholds](docs/fixed_exercise_protocols.md)
+
 ## Developer pose verification demo
 
 Use a video file or webcam index to inspect pose features alone. Press Q or

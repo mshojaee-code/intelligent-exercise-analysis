@@ -1,54 +1,65 @@
-# Observable cycle quality
+# Cycle evidence and form decisions
 
-Run the demo with `--form`. Each structured assessment links directly to the
-counter's exercise, ordinal, last start-posture timestamp and completion timestamp.
-Partial movements have no verdict. GOOD means all configured observable targets
-passed. BAD requires sufficient evidence and at least one failed target.
-UNASSESSABLE takes precedence whenever evidence is insufficient. Each status
-has a separate per-exercise session total.
+The counter emits one event when an attempt returns to its start posture.
+The assessor links its result to that event's exercise, ordinal and timestamps.
+Partial movements produce neither a completed cycle nor an assessment. A
+controller reset drops evidence for an abandoned attempt. The return frame
+can seed the next cycle. Replaying an event cannot increment quality totals.
+[Exercise variants, camera placement and rule definitions](fixed_exercise_protocols.md)
 
-## Default targets
+## How a verdict is decided
 
-| Exercise and setup | Measurements and decision |
-| --- | --- |
-| Squat, level side view | During Deep, require minimum left EMA knee angle ≤110° and minimum vertical hip height above knee ≤0.25 projected torso lengths. Across the cycle, maximum absolute trunk inclination from upward vertical must be ≤50°. Require knee ≥160° on return to standing. Frontal knee alignment is unavailable. |
-| Push-up, level side view | During Bent, minimum EMA elbow angle ≤95°. On completion require extension ≥155°. Track perpendicular offset of left hip from the left shoulder–ankle line throughout, divided by shoulder–ankle length. Permit up to 0.10 length below (sag) and 0.10 above (pike). This extra rule requires a visible ankle and a measurable, predominantly horizontal body line at least one torso length long. |
-| Pull-up, near-side view | During Upper, minimum left EMA elbow angle ≤85°. At return require extension ≥150°. Maximum projected trunk inclination ≤35° is a limited body-control cue. Bar position, chin clearance and out-of-plane swing are unavailable. |
-| Jumping Jack, front view | During Open, require both wrists above both shoulders by ≥0.25 torso lengths and ankle span ≥2.2 hip widths. On completion both wrists must be down (counter gate) and ankle span ≤1.4 hip widths. At most 35% of valid cycle frames may have only one of arms raised and feet open. Feet open uses the counter's open span. |
-| Russian Twist, seated front view | Require wrist midpoint to travel ≥1.0 hip widths on each side of pelvic midpoint, then finish within 0.35 hip widths of center. Maximum wrist separation ≤0.75 hip widths. Left and right refer to sides of the image. GOOD describes observable hand coordination. Arm-only movement can pass these rules. Torso rotation and spinal loading are unavailable. |
+1. Require at least five usable frames and at least 75% usable coverage across
+   the cycle. Each measured rule also needs at least 75% of its eligible
+   samples. Insufficient cycle coverage gives UNASSESSABLE.
+2. Strict pull-ups and seated twists always receive UNASSESSABLE with the
+   current sensors. The evidence still records measurable outcomes and the
+   essential requirements that could not be verified.
+3. For the other protocols, a clear essential violation gives BAD even if a
+   different requirement is unavailable. The assessment retains both lists.
+   With no clear violation, missing essential evidence gives UNASSESSABLE.
+   All essential rules passing gives GOOD.
+4. Optional cues can appear in the failed or unavailable list without changing
+   the verdict. Heel travel for squats and hand spacing for twists are optional.
+   Trunk inclination, pull-up elbow excursion and signed push-up alignment
+   diagnostics provide context.
 
-These are provisional demonstration defaults, with settings in
-`exercise_analysis/config/form.json`. A level camera and the counter's required
-view and visibility are prerequisites. Linear geometry uses aspect-corrected
-image coordinates. Joint angles use the existing normalized-image EMA convention.
-Endpoint rules observe the actual completion frame and default to the counter's
-return gates. The twist quality rules assume the default bilateral cycle convention.
-The optional single-sided counting convention still requires both directions to
-earn GOOD under this form policy.
+The assessor keeps bounded summaries during the cycle. For a sustained minimum,
+take the higher of each adjacent pair and keep the lowest such value. For a
+sustained maximum, take the lower of each pair and keep the highest. Losing
+visibility, leaving the eligible phase or a recognition warning breaks the
+pair. This protects against an isolated extreme. A peak target reached on only
+one unconfirmed sample is uncertain. The endpoint rules require both start
+and finish observations. Corrected knee and elbow endpoint angles use EMA.
+Jack coordination uses the mean mismatch across observable frames. Rules use
+the same stream timestamps and exercise continuity as the counter.
 
-## Evidence and feedback
+Run `python run.py` for the full application. For per-rule evidence, run
+`python -m exercise_analysis.ui.pose_demo --form --headless --video FILE`.
+The JSON includes satisfied, failed and unavailable rule IDs, eligible and
+observed sample counts, aggregated values, feedback and the protocol limitation.
 
-The assessor aggregates the minimum, maximum, mean or completion-frame value
-specified for each rule, together with eligible and observed frame counts. Each
-cycle needs at least five valid frames and 75% valid frame coverage. Each rule needs
-at least one observation and 75% coverage of its eligible frames. Counter warnings
-contribute to the cycle coverage denominator only. Additional invisible, off-frame,
-or unusable joints reduce the corresponding rule's coverage. The current count
-state carries the FSM's start timestamp so a new start, mode change, exercise
-switch or tracking reset cannot reuse evidence from an abandoned cycle.
+## Real squat clip
 
-Live cues prioritize unavailable measurements and then the first applicable
-rule in exercise order. A 0.6-second hold limits frequent changes. Tracking and
-view warnings interrupt immediately. Headless output includes each completed
-assessment, rule IDs, measured values, coverage, feedback and limitations.
+Both full-pipeline replays processed all 110 frames to EOF, rendered dashboard
+images and exported five CSV rows. The counter, HUD snapshot, assessor and CSV
+agreed on one squat, zero GOOD, one BAD and zero UNASSESSABLE.
 
-## Verification scope
+| Mode | Cycle interval | Usable cycle frames | Sustained thigh inclination | Standing evidence | Active Unknown |
+| --- | --- | ---: | ---: | --- | ---: |
+| Automatic | 1.36–3.64 s | 53/58 | +25.17° | Start unavailable after recognition loss, return knee 162.87° | 43/110 frames |
+| Manual Squat | 1.24–3.60 s | 60/60 | +25.17° | Both endpoints upright, lower endpoint knee 160.17° | 0/110 frames |
 
-In automatic and manual Squat mode the saved 110-frame clip produced one cycle
-from 1.44 to 3.36 s. All 49 cycle frames were usable. The measured minimum knee
-angle was 116.58° and minimum hip height above knee was 0.339 torso lengths.
-Both missed the provisional depth targets. Maximum trunk inclination (27.36°)
-and return knee angle (160.01°) passed. The system reported BAD, with GOOD 0
-and UNASSESSABLE 0. The existing visual review establishes one movement cycle.
-A human form-quality reference and real form tests for the other four exercises
-remain pending. Synthetic tests exercise rule outcomes and missing evidence.
+The essential failure in both modes was `squat_thigh_deg`. The cue was “Lower
+hips to parallel.” Both modes observed 45 eligible depth samples. Sustained
+maximum trunk inclination was 27.25° and optional heel travel was below 0.07
+torso lengths. Automatic mode also recorded the unavailable initial standing
+angle and upright posture. The automatic active decisions were 66 Squat, one
+Jumping Jack and 43 Unknown. Manual mode assigned all frames to Squat. The
+classifier's raw predictions in both runs were 83 Squat, 26 Jumping Jack and
+one Russian Twist.
+
+This clip informed an earlier counter threshold and the reacquisition check.
+It verifies integration on a known recording. Independent form labels,
+recordings for all five exercises, webcam checks and target-laptop testing
+remain outstanding.

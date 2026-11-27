@@ -60,7 +60,7 @@ class SessionTests(unittest.TestCase):
                 tick += 1
                 pose, features = frame("Push-up", angle, tick / 20)
                 pose.landmarks["LEFT_ANKLE"] = Landmark(.90, .55, .2 if quality == "UNASSESSABLE" else 1)
-                if quality == "BAD" and i == 2:
+                if quality == "BAD" and i in (2, 3):
                     pose.landmarks["LEFT_HIP"] = Landmark(.48, .66, 1)
                 raw = RawAngleFrame(pose.seconds, features.angles)
                 with patch("exercise_analysis.session.extract", return_value=raw):

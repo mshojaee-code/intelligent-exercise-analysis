@@ -15,6 +15,7 @@ from exercise_analysis.capture.video import open_frames
 from exercise_analysis.features.joint_angles import extract
 from exercise_analysis.pose.mediapipe_adapter import PoseEstimator
 from exercise_analysis.ui.skeleton import draw_skeleton
+from exercise_analysis.form.geometry import motion_angles
 from exercise_analysis.preprocessing.ema import AngleEMA
 
 
@@ -104,12 +105,12 @@ def main():
 
                 counting_file = args.counting_config or config_dir.joinpath("counting.json")
                 counting_settings = json.loads(counting_file.read_text())
+                motion_ema = AngleEMA(settings["ema_alpha"], settings["ema_max_gap_seconds"])
                 counter = SessionCounter(counting_settings, visibility)
                 if args.form:
                     from exercise_analysis.form.assessment import FormAssessor
                     form_file = args.form_config or config_dir.joinpath("form.json")
-                    assessor = FormAssessor(json.loads(form_file.read_text()), visibility,
-                                            counting_settings["Jumping Jack"]["open_span"])
+                    assessor = FormAssessor(json.loads(form_file.read_text()), visibility)
             classifier = Classifier.load(args.bundle)
             raw_counts, active_counts = Counter(), Counter()
             previous_active = None
@@ -134,7 +135,8 @@ def main():
                     previous_active = decision.active
                     if args.count:
                         height, width = frame.bgr.shape[:2]
-                        state = counter.update(decision, pose, smooth, width / height)
+                        motion = motion_ema.update(motion_angles(pose, width / height, visibility))
+                        state = counter.update(decision, pose, motion, width / height)
                         lines = (f"{state.exercise or 'Unknown'}   Cycles: {state.total}",
                                  f"{state.phase}   {state.progress:.0%}", state.warning)
                         for i, text in enumerate(lines):
@@ -144,7 +146,7 @@ def main():
                             print(f"Cycle {state.event.number}: {state.event.exercise} "
                                   f"{state.event.started:.2f} to {state.event.completed:.2f} s")
                         if args.form:
-                            assessment = assessor.update(state, pose, smooth, width / height)
+                            assessment = assessor.update(state, pose, motion, width / height)
                             if assessment:
                                 print(json.dumps(asdict(assessment)))
                             totals = assessor.totals.get(state.exercise, Counter())
