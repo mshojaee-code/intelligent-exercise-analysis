@@ -40,6 +40,20 @@ its path. Use `--output DIR` to change the directory, or `--headless` to process
 without a window. The app reads the pose asset and classifier from disk and
 requires no network at runtime. [CSV fields and example](docs/session_reporting.md)
 
+### Validate local recordings on Ubuntu
+
+After setup, check the laptop and run a two-mode headless evaluation from a
+local CSV manifest.
+
+```bash
+python preflight.py --webcam 0 --video /path/to/squat.mp4
+python validate_videos.py /path/to/manifest.csv --output sessions/validation
+```
+
+Each run writes CSV and JSON results with links to the application session
+summaries. Human counts and form annotations are optional.
+[Sample manifest](examples/validation_manifest.csv) · [Collection, Ubuntu checks and metric definitions](docs/real_video_validation.md)
+
 ### What GOOD means
 
 The app judges the parallel bodyweight squat, standard full push-up, strict
