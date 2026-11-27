@@ -1,6 +1,6 @@
 """Image-normalized anatomical landmarks. Missing landmarks are omitted."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import math
 
 
@@ -19,3 +19,5 @@ class Landmark:
 class PoseFrame:
     seconds: float
     landmarks: dict[str, Landmark]
+    world: dict[str, tuple[float, float, float]] = field(default_factory=dict)
+    chin_y: float | None = None

@@ -39,6 +39,14 @@ class ValidationTests(unittest.TestCase):
         row, = self.manifest_text("video_path,exercise,human_good,human_bad\na.mp4,Squat,1,0\n")
         self.assertEqual((row.human_count, row.human_good, row.human_bad), (None, 1, 0))
 
+    def test_bar_calibration_is_local_to_each_manifest_row(self):
+        first, second = self.manifest_text("video_path,exercise,bar_y\na,Pull-up,0.25\nb,Pull-up,\n")
+        self.assertEqual(first.bar_y, .25)
+        self.assertIsNone(second.bar_y)
+        for invalid in ("nan", "0", "1.01"):
+            with self.assertRaises(ValueError):
+                self.manifest_text(f"video_path,exercise,bar_y\na,Pull-up,{invalid}\n")
+
     def test_rejects_bad_headers_rows_and_annotations(self):
         for text in ("", "exercise\nSquat\n", "video_path,exercise\n",
                      "video_path,exercise,exercise\na,Squat,Squat\n",

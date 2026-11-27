@@ -12,13 +12,13 @@ can seed the next cycle. Replaying an event cannot increment quality totals.
 1. Require at least five usable frames and at least 75% usable coverage across
    the cycle. Each measured rule also needs at least 75% of its eligible
    samples. Insufficient cycle coverage gives UNASSESSABLE.
-2. Strict pull-ups and seated twists always receive UNASSESSABLE with the
-   current sensors. The evidence still records measurable outcomes and the
-   essential requirements that could not be verified.
-3. For the other protocols, a clear essential violation gives BAD even if a
-   different requirement is unavailable. The assessment retains both lists.
-   With no clear violation, missing essential evidence gives UNASSESSABLE.
-   All essential rules passing gives GOOD.
+2. Strict pull-ups and seated twists require reliable auxiliary measurements.
+   Missing essential evidence yields UNASSESSABLE. With adequate coverage, a
+   clear violation yields BAD and all essential checks passing yields GOOD.
+   [Source-to-rule mapping](exercise_form_references.md)
+3. For the other protocols a clear essential violation gives BAD even when a
+   separate requirement is unavailable. The evidence records both. Otherwise
+   missing essential evidence gives UNASSESSABLE and a complete pass gives GOOD.
 4. Optional cues can appear in the failed or unavailable list without changing
    the verdict. Heel travel for squats and hand spacing for twists are optional.
    Trunk inclination, pull-up elbow excursion and signed push-up alignment

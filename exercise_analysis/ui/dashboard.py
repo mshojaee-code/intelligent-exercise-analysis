@@ -24,7 +24,7 @@ def text(canvas, value, x, y, size=.5, color=INK, width=None, weight=1):
     cv2.putText(canvas, value, (x, y), FONT, size, color, weight, cv2.LINE_AA)
 
 
-def render(bgr, pose, state, visibility, source, help_open=False):
+def render(bgr, pose, state, visibility, source, help_open=False, *, bar_y=None):
     canvas = np.full((630, 1120, 3), BG, np.uint8)
     # Header
     cv2.rectangle(canvas, (20, 18), (26, 40), MINT, -1)
@@ -39,6 +39,9 @@ def render(bgr, pose, state, visibility, source, help_open=False):
     w, h = max(1, round(frame_w * scale)), max(1, round(frame_h * scale))
     preview = cv2.resize(bgr, (w, h), interpolation=cv2.INTER_AREA)
     draw_skeleton(preview, pose, visibility, w, h)
+    if bar_y is not None:
+        row = round(bar_y * (h-1))
+        cv2.line(preview, (0, row), (w-1, row), AMBER, 1, cv2.LINE_AA)
     cv2.rectangle(canvas, (20, 60), (711, 445), (16, 15, 14), -1)
     x, y = 20 + (692-w)//2, 60 + (386-h)//2
     canvas[y:y+h, x:x+w] = preview

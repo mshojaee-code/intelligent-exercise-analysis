@@ -58,11 +58,35 @@ summaries. Human counts and form annotations are optional.
 
 The app judges the parallel bodyweight squat, standard full push-up, strict
 pull-up, classic jumping jack and seated Russian twist. A complete shallow
-squat or push-up can count once and receive BAD. Strict pull-ups and seated
-twists count observable attempts and receive UNASSESSABLE because this setup
-cannot verify chin clearance or torso rotation. The five HUD angle readouts use
-the classifier schema. Protocol thresholds use separately corrected image
-geometry. [Camera setup and protocol thresholds](docs/fixed_exercise_protocols.md)
+squat or push-up can count once and receive BAD. Strict pull-ups use facial chin clearance over a calibrated bar.
+Seated twists require bilateral shoulder rotation relative to the pelvis and
+a stable seated base. Insufficient evidence yields UNASSESSABLE. The five HUD
+angle readouts use the classifier schema. [ACE and NASM references and rule mapping](docs/exercise_form_references.md)
+
+### Pull-up bar calibration
+
+For strict pull-up quality, provision the optional MediaPipe Face Landmarker
+once. The installed MediaPipe package runs it locally on CPU.
+
+```bash
+mkdir -p models
+curl -fL https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task -o models/face_landmarker.task
+echo '64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff  models/face_landmarker.task' | sha256sum -c -
+```
+
+On an original, uncropped frame, divide the top-edge bar y-coordinate by the
+image height (top = 0). For example, a level bar at row 180 of a 720-pixel
+frame gives 0.25. Use your measured value and keep the camera fixed.
+
+```bash
+python run.py --video /path/to/pull-up.mp4 --manual Pull-up --bar-y 0.25
+```
+
+The same option works for webcam and automatic recognition. Check the amber
+line against the bar in the preview. Recalibrate after a camera or crop change.
+Face inference runs only when a bar height is supplied. If the asset is missing,
+movement counting continues and strict pull-up quality is UNASSESSABLE. Twists
+use the existing Pose model. [Camera setup and thresholds](docs/fixed_exercise_protocols.md)
 
 ## Developer pose verification demo
 

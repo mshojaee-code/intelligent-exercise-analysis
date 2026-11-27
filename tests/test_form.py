@@ -210,7 +210,7 @@ class FormTests(unittest.TestCase):
         self.assertFalse(result.failed)
 
     def test_elbow_and_hand_proxies_cannot_certify_strict_protocols(self):
-        for name, missing in [("Pull-up", "chin_over_bar"), ("Russian Twist", "torso_pelvis_rotation")]:
+        for name, missing in [("Pull-up", "chin_over_bar"), ("Russian Twist", "twist_right_rotation_deg")]:
             for v in MOTION[name]:
                 result = self.step(name, v)
             self.assertEqual(result.status, "UNASSESSABLE")

@@ -35,7 +35,7 @@ class Snapshot:
 
 
 class Session:
-    def __init__(self, classifier, pose_settings, display_settings):
+    def __init__(self, classifier, pose_settings, display_settings, *, bar_y=None):
         self.classifier = classifier
         self.visibility = pose_settings["min_visibility"]
         self.ema = AngleEMA(pose_settings["ema_alpha"], pose_settings["ema_max_gap_seconds"])
@@ -44,7 +44,7 @@ class Session:
         self.controls = Recognition(self.exercises, **config("recognition"))
         counting = config("counting")
         self.counter = SessionCounter(counting, self.visibility)
-        self.assessor = FormAssessor(config("form"), self.visibility)
+        self.assessor = FormAssessor(config("form"), self.visibility, bar_y=bar_y)
         self.durations = dict.fromkeys(self.exercises, 0.)
         self.session_id = uuid4().hex
         self.start = self.previous_time = self.previous_active = self.last = None
