@@ -74,7 +74,11 @@ event and maintains separate totals. Synthetic sequences cover all five FSMs.
 
 FormAssessor consumes the counter's CountState, pose, EMA angles and frame
 aspect ratio. It tracks bounded per-rule summaries for the current exercise and
-cycle start. CountState exposes the counter's existing start timestamp.
+cycle start. PoseFrame also carries visibility-filtered world landmarks and an
+optional associated face-mesh chin height. Only form assessment consumes these
+signals. Bar calibration belongs to one fixed source. Neutral twist heading,
+seated ankle references and the rotation EMA belong to the current cycle.
+CountState exposes the counter's existing start timestamp.
 CompletedCycle triggers exactly one structured Assessment with independent
 quality accounting. The closing posture can also seed the next cycle. The UI
 renders feedback and serializes completed assessments. [Rule definitions,

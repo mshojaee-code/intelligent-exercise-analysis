@@ -1,5 +1,5 @@
 """Projected measurements for motion protocols, in units of image height."""
-from math import atan2, degrees, hypot, isfinite
+from math import acos, atan2, degrees, hypot, isfinite
 
 from exercise_analysis.features.joint_angles import AngleFrame, Angles
 
@@ -14,10 +14,14 @@ def projected(pose, aspect, visibility):
 def internal(a, vertex, b):
     if a is None or vertex is None or b is None:
         return None
-    u, v = (a[0]-vertex[0], a[1]-vertex[1]), (b[0]-vertex[0], b[1]-vertex[1])
+    u = tuple(x-y for x, y in zip(a, vertex, strict=True))
+    v = tuple(x-y for x, y in zip(b, vertex, strict=True))
     if not hypot(*u) or not hypot(*v):
         return None
-    return degrees(atan2(abs(u[0]*v[1] - u[1]*v[0]), u[0]*v[0] + u[1]*v[1]))
+    if len(u) == 2:
+        return degrees(atan2(abs(u[0]*v[1] - u[1]*v[0]), u[0]*v[0] + u[1]*v[1]))
+    cosine = sum(x*y for x, y in zip(u, v)) / (hypot(*u)*hypot(*v))
+    return degrees(acos(max(-1., min(1., cosine))))
 
 
 def motion_angles(pose, aspect, visibility):

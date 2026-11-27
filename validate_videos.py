@@ -12,6 +12,7 @@ from uuid import uuid4
 import cv2
 
 from exercise_analysis.session import config
+from exercise_analysis.pose.mediapipe_adapter import DEFAULT_FACE
 from run import run
 
 
@@ -23,6 +24,7 @@ class Clip:
     human_good: int | None
     human_bad: int | None
     notes: str
+    bar_y: float | None = None
 
 
 def read_manifest(path):
@@ -33,7 +35,7 @@ def read_manifest(path):
         fields = reader.fieldnames or []
         if (not {"video_path", "exercise"}.issubset(fields) or len(set(fields)) != len(fields)
                 or set(fields) - Clip.__dataclass_fields__.keys()):
-            raise ValueError("Check manifest headers. Require video_path,exercise. Optional: human_count,human_good,human_bad,notes")
+            raise ValueError("Check manifest headers. Require video_path,exercise. Optional: human_count,human_good,human_bad,notes,bar_y")
         for row in reader:
             prefix = f"{path} line {reader.line_num}"
             if None in row:
@@ -50,7 +52,11 @@ def read_manifest(path):
             labeled = (annotations["human_good"] or 0) + (annotations["human_bad"] or 0)
             if annotations["human_count"] is not None and labeled > annotations["human_count"]:
                 raise ValueError(f"{prefix}: quality labels exceed human_count")
-            clips.append(Clip((path.parent / video).resolve(), exercise, **annotations, notes=row.get("notes", "")))
+            bar = row.get("bar_y", "").strip()
+            bar_y = float(bar) if bar else None
+            if bar_y is not None and not 0 < bar_y < 1:
+                raise ValueError(f"{prefix}: bar_y must be strictly between zero and one")
+            clips.append(Clip((path.parent / video).resolve(), exercise, **annotations, notes=row.get("notes", ""), bar_y=bar_y))
     if not clips:
         raise ValueError(f"{path}: manifest has no videos")
     return clips
@@ -71,7 +77,7 @@ def source_metadata(path):
         capture.release()
 
 
-def evaluate(clip, mode, source, directory, model, bundle):
+def evaluate(clip, mode, source, directory, model, bundle, face_model=DEFAULT_FACE):
     source_frames, duration = source
     result = dict(asdict(clip), video_path=str(clip.video_path), mode=mode,
                   source_frames=source_frames, source_duration_s=duration,
@@ -98,7 +104,8 @@ def evaluate(clip, mode, source, directory, model, bundle):
     started = perf_counter()
     try:
         session, path = run(clip.video_path, model, bundle, directory / "sessions",
-                            manual=clip.exercise if mode == "manual" else None, headless=True, on_frame=observe)
+                            manual=clip.exercise if mode == "manual" else None, headless=True, on_frame=observe,
+                            bar_y=clip.bar_y, face_model=face_model)
         result["session_csv"] = str(path.relative_to(directory))
         total = sum(session.counter.totals.values())
         matched = session.counter.totals[clip.exercise]
@@ -126,7 +133,7 @@ def evaluate(clip, mode, source, directory, model, bundle):
     return result
 
 
-def validate(manifest, output, model, bundle):
+def validate(manifest, output, model, bundle, face_model=DEFAULT_FACE):
     clips = read_manifest(manifest)
     directory = output / uuid4().hex
     directory.mkdir(parents=True)
@@ -137,7 +144,7 @@ def validate(manifest, output, model, bundle):
         except cv2.error:
             source = None, None  # The actual replay still checks the input.
         for mode in ("manual", "automatic"):
-            row = evaluate(clip, mode, source, directory, model, bundle)
+            row = evaluate(clip, mode, source, directory, model, bundle, face_model)
             rows.append(row)
             detail = row["error"] or f"completed cycles = {row['total_cycles']}"
             print(f"{clip.video_path.name} [{mode}] {row['status']} — {detail}")
@@ -156,9 +163,10 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("sessions/validation"))
     parser.add_argument("--model", type=Path, default=Path("models/pose_landmarker_lite.task"))
     parser.add_argument("--bundle", type=Path, default=Path("artifacts/kaggle-frame-v1"))
+    parser.add_argument("--face-model", type=Path, default=DEFAULT_FACE)
     args = parser.parse_args()
     try:
-        directory, ok = validate(args.manifest, args.output, args.model, args.bundle)
+        directory, ok = validate(args.manifest, args.output, args.model, args.bundle, args.face_model)
     except (OSError, ValueError, csv.Error) as exc:
         parser.exit(1, f"Validation: {exc}\n")
     print(f"Evaluation reports: {directory}")

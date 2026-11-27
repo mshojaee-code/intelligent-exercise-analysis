@@ -10,16 +10,16 @@ import cv2
 
 from exercise_analysis.capture.video import open_frames
 from exercise_analysis.classification.bundle import Classifier
-from exercise_analysis.pose.mediapipe_adapter import PoseEstimator
+from exercise_analysis.pose.mediapipe_adapter import DEFAULT_FACE, PoseEstimator
 from exercise_analysis.session import Session, config
 from exercise_analysis.ui.dashboard import render
 
 
-def run(source, model, bundle, output, manual=None, headless=False, *, on_frame=None):
+def run(source, model, bundle, output, manual=None, headless=False, *, on_frame=None, bar_y=None, face_model=DEFAULT_FACE):
     if not headless and sys.platform.startswith("linux") and not os.getenv("DISPLAY"):
         raise ValueError("Open the dashboard in a desktop session or use --headless")
     settings = config("pose")
-    session = Session(Classifier.load(bundle), settings, config("display"))
+    session = Session(Classifier.load(bundle), settings, config("display"), bar_y=bar_y)
     session.controls.select(manual)
     help_open = False
     title = "Exercise analysis"
@@ -27,7 +27,9 @@ def run(source, model, bundle, output, manual=None, headless=False, *, on_frame=
         with ExitStack() as resources:
             frames = resources.enter_context(open_frames(source))
             estimator = resources.enter_context(PoseEstimator(model, settings["detection_confidence"],
-                                                settings["presence_confidence"], settings["tracking_confidence"]))
+                                                settings["presence_confidence"], settings["tracking_confidence"],
+                                                face_model=face_model if bar_y is not None else None,
+                                                min_visibility=settings["min_visibility"]))
             if not headless:
                 cv2.namedWindow(title, cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)
                 resources.callback(cv2.destroyAllWindows)
@@ -42,7 +44,7 @@ def run(source, model, bundle, output, manual=None, headless=False, *, on_frame=
                 if headless:
                     continue
                 dashboard = render(frame.bgr, pose, state, session.visibility,
-                                   "Webcam" if isinstance(source, int) else "Video", help_open)
+                                   "Webcam" if isinstance(source, int) else "Video", help_open, bar_y=bar_y)
                 cv2.imshow(title, dashboard)
                 delay_ms = 1
                 if not isinstance(source, int):
@@ -80,10 +82,12 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("sessions"))
     parser.add_argument("--model", type=Path, default=Path("models/pose_landmarker_lite.task"))
     parser.add_argument("--bundle", type=Path, default=Path("artifacts/kaggle-frame-v1"))
+    parser.add_argument("--bar-y", type=float, help="Bar height divided by original image height, from the top")
+    parser.add_argument("--face-model", type=Path, default=DEFAULT_FACE, help="Local optional face_landmarker.task")
     args = parser.parse_args()
     try:
         session, path = run(args.video if args.video is not None else args.webcam, args.model,
-                            args.bundle, args.output, args.manual, args.headless)
+                            args.bundle, args.output, args.manual, args.headless, bar_y=args.bar_y, face_model=args.face_model)
     except KeyboardInterrupt:
         parser.exit(130, "Session interrupted\n")
     except (OSError, ValueError, KeyError, RuntimeError, cv2.error) as error:

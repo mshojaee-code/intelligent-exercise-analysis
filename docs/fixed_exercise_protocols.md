@@ -85,14 +85,21 @@ These are engineering defaults pending independent calibration.
   arms extended and wrist above shoulder, pull up, then lower to extension.
   Projected EMA elbow gates are ≥150° to start/finish, ≤135° to depart and
   ≤115° to latch the attempt.
-- **Essential evidence.** The protocol requires extended endpoints and the
-  chin passing above the bar. The assessor records endpoint extension and the
-  sustained minimum observable elbow angle. The numeric elbow feedback remains
-  available on completed attempts with adequate coverage.
-- **Interpretation.** Strict quality is UNASSESSABLE. The 33 pose landmarks
-  supply neither a chin point nor a bar measurement. A manually marked bar
-  line would solve only the bar location, so the app has no bar calibration
-  control. Nose height and elbow flexion cannot establish chin clearance.
+- **Chin and bar.** Measure the top edge of the horizontal bar in the original
+  frame, divide its y pixel coordinate by the image height and supply
+  `--bar-y` once for that camera position. An amber line shows the calibration
+  on the live dashboard. Keep the face large enough for face tracking, the chin
+  unobscured and the bar level. Face Landmarker vertex 152 estimates the lower
+  midline chin. Pose nose inside the face bounds associates the face to the
+  participant. Clearance is `bar_y - chin_y` in image heights.
+- **Verdict.** Both hang endpoints need clearance ≤−0.01 and elbow ≥150°.
+  Two adjacent Upper frames with clearance ≥+0.01 establish a crossing.
+  Observations inside the margin are uncertain. A clearly short pull with
+  reliable upper-phase coverage earns BAD. Incomplete face evidence that could
+  hide the only crossing, missing calibration, or an unverifiable hang yields
+  UNASSESSABLE. Sustained horizontal hip displacement from the start >0.50
+  torso lengths flags visible swing. Camera parallax, rotation or an incorrect
+  bar line can bias the result. See the [one-time face setup](../README.md#pull-up-bar-calibration).
 
 ## Classic jumping jack
 
@@ -127,16 +134,27 @@ These are engineering defaults pending independent calibration.
   Use center ≤0.35 in absolute value and ≥0.90 to either side. Require both
   directions and a final center, in either order. The counter accepts hand
   separation ≤1.0 hip width.
-- **Essential evidence.** The selected protocol also requires actual
-  upper-body rotation relative to the pelvis and a stable seated base. The
-  assessor records bilateral hand reach and return. Hand separation above
-  0.75 hip widths is an optional cue.
-- **Interpretation.** Strict quality is UNASSESSABLE even for a complete
-  bilateral hand path. The adapter emits image landmarks. MediaPipe can also
-  supply inferred world landmarks, but this project has no independent
-  reference for relative shoulder/pelvis rotation, depth under occlusion or
-  support stability. Arm-only swings can reproduce the observable hand path.
-  No validated 3D rotation angle or threshold is available.
+- **Rotation evidence.** In the world-landmark x–z plane, compute
+  `atan2(right_z - left_z, right_x - left_x)` for both shoulders and both
+  hips. Subtract hip heading from shoulder heading and wrap to ±180°.
+  Capture neutral at the starting center, with relative yaw within 20°.
+  Reject missing, low-visibility or degenerate measurements (transverse span
+  <0.08 m), or turns exceeding 90° from neutral. At each hand reach, both
+  camera-relative shoulder turn and shoulder-minus-pelvis turn must reach
+  15° toward that side. Require the current and EMA-smoothed (α=0.5) relative
+  turn and two consecutive qualifying frames. At completion both turns must
+  be within 10° of neutral.
+- **Seated base.** At the starting center the permitted backward lean from
+  vertical is −5° to 45°, including a small forward measurement tolerance.
+  Throughout the cycle both knees must be bent (3D hip–knee–ankle ≤145°),
+  within 0.65 torso lengths vertically of their hip, with ankles below the
+  knees. Projected ankle drift from the start may reach 0.15 torso lengths.
+  Hand separation above 0.75 hip widths is an optional cue.
+- **Interpretation.** Reliable bilateral turns and a stable base can earn
+  GOOD. Clear arm-only swings, pelvis-only turns or moving feet can earn BAD.
+  Inadequate evidence for an essential check yields UNASSESSABLE. World
+  coordinates come from a monocular estimator. The proxies cannot directly
+  measure spinal rotation, seat contact, foot loading or muscle activation.
 
 Thresholds live in `exercise_analysis/config/counting.json` and
 `exercise_analysis/config/form.json`. [Evidence policy and real-video results](form_assessment.md)

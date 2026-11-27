@@ -63,16 +63,19 @@ their sum below the total. Blank means unknown and zero means an observed
 zero. Never copy the application's verdicts into the human columns. Comparing
 two aggregate quality counts cannot establish per-repetition form accuracy.
 
-Strict pull-up clearance requires chin-to-bar evidence. Pose supplies no chin
-landmark. Seated twist requires relative torso rotation and a stable seated
-base. A bilateral hand path cannot verify either. Their strict software
-verdict is UNASSESSABLE. Preserve that category separately in analysis.
+For each fixed-camera pull-up clip, optionally add a `bar_y` column to its
+manifest row (top-of-bar y / source image height, strictly between 0 and 1).
+Provision the local face asset or pass `--face-model PATH`. Leave the cell
+blank for uncalibrated recordings. Inspect failed and unavailable rules against
+human labels. Strict pull-up clearance needs reliable facial evidence and seated
+twist quality needs reliable relative rotation and a stable seated base.
+Preserve UNASSESSABLE as a separate category.
 
 ## Read the results
 
 The required manifest columns are `video_path,exercise`. Paths are relative
 to the manifest or absolute. Use the canonical exercise names in the table.
-Optional columns are `human_count,human_good,human_bad,notes`. Use a CSV
+Optional columns are `human_count,human_good,human_bad,notes,bar_y`. Use a CSV
 writer or quotes for paths or notes containing commas. The example contains
 filenames for you to replace and no reference labels.
 

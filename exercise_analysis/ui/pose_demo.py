@@ -13,7 +13,7 @@ import cv2
 
 from exercise_analysis.capture.video import open_frames
 from exercise_analysis.features.joint_angles import extract
-from exercise_analysis.pose.mediapipe_adapter import PoseEstimator
+from exercise_analysis.pose.mediapipe_adapter import DEFAULT_FACE, PoseEstimator
 from exercise_analysis.ui.skeleton import draw_skeleton
 from exercise_analysis.form.geometry import motion_angles
 from exercise_analysis.preprocessing.ema import AngleEMA
@@ -78,6 +78,8 @@ def main():
     parser.add_argument("--counting-config", type=Path, help="Override counting.json")
     parser.add_argument("--form", action="store_true", help="Assess observable rules on counted cycles")
     parser.add_argument("--form-config", type=Path, help="Override form.json")
+    parser.add_argument("--bar-y", type=float, help="Normalized horizontal bar height from top of source")
+    parser.add_argument("--face-model", type=Path, default=DEFAULT_FACE)
     args = parser.parse_args()
     args.count = args.count or args.form
     args.recognize = args.recognize or args.count or args.manual is not None
@@ -110,14 +112,15 @@ def main():
                 if args.form:
                     from exercise_analysis.form.assessment import FormAssessor
                     form_file = args.form_config or config_dir.joinpath("form.json")
-                    assessor = FormAssessor(json.loads(form_file.read_text()), visibility)
+                    assessor = FormAssessor(json.loads(form_file.read_text()), visibility, bar_y=args.bar_y)
             classifier = Classifier.load(args.bundle)
             raw_counts, active_counts = Counter(), Counter()
             previous_active = None
             transitions = 0
         with open_frames(args.video if args.video is not None else args.webcam) as frames, PoseEstimator(
             args.model, settings["detection_confidence"], settings["presence_confidence"],
-            settings["tracking_confidence"],
+            settings["tracking_confidence"], face_model=args.face_model if args.form and args.bar_y is not None else None,
+            min_visibility=visibility,
         ) as estimator:
             started = perf_counter()
             for frame in frames:

@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from math import atan2, degrees, dist, isfinite
 
 from exercise_analysis.counting.cycles import CompletedCycle
+from exercise_analysis.form.twist import TwistEvidence
 from exercise_analysis.form.geometry import internal, projected, thigh_inclination
 
 
@@ -31,7 +32,9 @@ RULES = {
         Rule("push_knee_clearance_torsos", "min_pair", "at_least", "Keep knees clear in a full plank")),
     "Pull-up": (
         Rule("pull_extension_deg", "endpoints", "at_least", "Extend arms in the hang"),
-        Rule("chin_over_bar", "unavailable", "", "Chin clearance unavailable")),
+        Rule("chin_over_bar", "max_pair", "true", "Raise chin above the bar", peak_target=True),
+        Rule("chin_in_hang", "endpoints", "true", "Check bar calibration and show the hang"),
+        Rule("pull_max_swing_torsos", "max_pair", "at_most", "Reduce horizontal swing")),
     "Jumping Jack": (
         Rule("jack_overhead", "max_pair", "true", "Raise both wrists above your head", peak_target=True),
         Rule("jack_open_hip_widths", "max_pair", "at_least", "Open feet wider", peak_target=True),
@@ -42,16 +45,19 @@ RULES = {
         Rule("twist_right_reach", "max", "at_least", "Reach to the right"),
         Rule("twist_left_reach", "max", "at_least", "Reach to the left"),
         Rule("twist_center_hip_widths", "endpoints_max", "at_most", "Return hands to center"),
-        Rule("torso_pelvis_rotation", "unavailable", "", "Trunk rotation unavailable"),
-        Rule("seated_support", "unavailable", "", "Seated support unavailable"),
+        Rule("twist_right_rotation_deg", "max_pair", "at_least", "Turn shoulders toward the right", peak_target=True),
+        Rule("twist_left_rotation_deg", "max_pair", "at_least", "Turn shoulders toward the left", peak_target=True),
+        Rule("twist_center_rotation_deg", "endpoints_max", "at_most", "Return shoulders to center"),
+        Rule("seated_support", "min_pair", "true", "Sit with bent knees and stable feet"),
+        Rule("twist_start_lean_deg", "max", "lean_range", "Start upright with a slight backward lean"),
         Rule("twist_hand_gap_hip_widths", "max_pair", "at_most", "Move hands together", False)),
 }
 LIMITATIONS = {
     "Squat": "Level side view; projected thigh depth. Frontal knee alignment unavailable.",
     "Push-up": "Level side view; visible plank and knee clearance approximate support. Load unavailable.",
-    "Pull-up": "Elbow range visible; no chin landmark or verified chin-to-bar measurement.",
+    "Pull-up": "Projected chin clearance requires a calibrated fixed bar and visible face; out-of-plane swing is unavailable.",
     "Jumping Jack": "Front view; overhead reach uses a conservative eye-to-shoulder head estimate.",
-    "Russian Twist": "Hand path visible; relative torso rotation and seated support unverified.",
+    "Russian Twist": "Monocular shoulder-pelvis yaw and seated posture are proxies; foot contact force is unavailable.",
 }
 
 
@@ -191,9 +197,14 @@ class Assessment:
 
 
 class FormAssessor:
-    def __init__(self, config, visibility):
+    def __init__(self, config, visibility, *, bar_y=None):
+        if bar_y is not None and not 0 < bar_y < 1:
+            raise ValueError("bar_y must be strictly between zero and one")
+        self.bar_y = bar_y
         if not all(isfinite(value) and value >= 0 for value in config.values()):
             raise ValueError("Form settings must be finite and nonnegative")
+        if not 0 < config["twist_rotation_alpha"] <= 1:
+            raise ValueError("Twist rotation EMA alpha must be in (0, 1]")
         if not 0 < config["min_coverage"] <= 1 or config["min_valid_frames"] < 1:
             raise ValueError("Invalid form observation coverage")
         self.cfg = config
@@ -206,7 +217,8 @@ class FormAssessor:
         self.key = key
         self.frames = self.valid = 0
         self.metrics = {}
-        self.start_heel = None
+        self.start_heel = self.start_hip_x = None
+        self.twist = TwistEvidence()
         self.feedback = "Find start posture"
         self.until = 0.
 
@@ -214,17 +226,22 @@ class FormAssessor:
         if rule.bound == "true":
             return value == 1
         key = "twist_reach_hip_widths" if rule.key in ("twist_right_reach", "twist_left_reach") else rule.key
+        if key in ("twist_left_rotation_deg", "twist_right_rotation_deg"):
+            key = "twist_rotation_deg"
+        if rule.bound == "lean_range":
+            return -self.cfg["twist_forward_tolerance_deg"] <= value <= self.cfg["twist_max_lean_deg"]
         threshold = self.cfg[key]
         return value <= threshold + 1e-9 if rule.bound == "at_most" else value >= threshold - 1e-9
 
     def observe(self, state, pose, angles, aspect, started):
         self.frames += 1
         if state.warning:
-            phases = {"squat_thigh_deg": "Attempt depth", "push_flex_deg": "Bent",
+            self.twist.filtered = None
+            phases = {"chin_over_bar": "Upper", "squat_thigh_deg": "Attempt depth", "push_flex_deg": "Bent",
                       "jack_overhead": "Open", "jack_open_hip_widths": "Open", "jack_together_at_peak": "Open"}
             for rule in RULES[state.exercise]:
                 metric = self.metrics.setdefault(rule.key, Metric())
-                if (rule.reduction != "unavailable" and not rule.reduction.startswith("endpoints")
+                if (rule.key != "twist_start_lean_deg" and not rule.reduction.startswith("endpoints")
                         and phases.get(rule.key, state.phase) == state.phase):
                     metric.add(None, rule.reduction)
             for metric in self.metrics.values():
@@ -244,6 +261,23 @@ class FormAssessor:
             limit = self.cfg["max_side_width_over_torso"] * dist(shoulder, hip)
             valid_view = (right is not None and abs(shoulder[0]-right[0]) <= limit
                           and abs(hip[0]-points["RIGHT_HIP"][0]) <= limit)
+        if state.exercise == "Pull-up":
+            # In the start/return hang the chin must be clearly below the supplied bar.
+            chin = pose.chin_y
+            clearance = None if self.bar_y is None or chin is None or not 0 <= chin <= 1 else self.bar_y - chin
+            margin = self.cfg["pull_bar_margin_image_heights"]
+            if endpoint:
+                values["chin_in_hang"] = 1. if clearance is not None and clearance <= -margin else None
+            if state.phase == "Upper":
+                values["chin_over_bar"] = (None if clearance is None or abs(clearance) < margin
+                                           else float(clearance > 0))
+            if pose.seconds == started and valid_view:
+                self.start_hip_x = hip[0]
+            values["pull_max_swing_torsos"] = (None if self.start_hip_x is None else
+                                                abs(hip[0]-self.start_hip_x)/dist(shoulder, hip))
+        elif state.exercise == "Russian Twist":
+            values.update(self.twist.samples(pose, points, self.cfg, values["twist_right_reach"],
+                                             pose.seconds == started, endpoint))
         self.valid += int(valid_view)
         rules = RULES[state.exercise]
         cue = None
@@ -282,7 +316,12 @@ class FormAssessor:
             # Seeing a target once without a confirming pair leaves peak attainment uncertain.
             isolated_peak = (rule.peak_target and metric.target_seen and metric.value is not None
                              and not self.passes(rule, metric.value))
-            if (isolated_peak or metric.value is None or metric.observed < self.cfg["min_coverage"] * metric.eligible
+            # Occlusion can hide the only chin crossing or shoulder turn.
+            auxiliary_peak = rule.key in ("chin_over_bar", "twist_right_rotation_deg", "twist_left_rotation_deg")
+            missed_peak = (auxiliary_peak and metric.observed < metric.eligible and metric.value is not None
+                           and not self.passes(rule, metric.value))
+            if (isolated_peak or missed_peak or metric.value is None
+                    or metric.observed < self.cfg["min_coverage"] * metric.eligible
                     or (rule.reduction.startswith("endpoints") and metric.observed != 2)):
                 unavailable.append(rule.key)
                 if rule.essential:
@@ -298,9 +337,9 @@ class FormAssessor:
         if self.valid < self.cfg["min_valid_frames"] or self.valid < self.cfg["min_coverage"] * self.frames:
             unavailable.append("cycle_coverage")
             status, feedback = "UNASSESSABLE", "Insufficient reliable cycle coverage"
-        elif name in ("Pull-up", "Russian Twist"):
+        elif name in ("Pull-up", "Russian Twist") and essential_missing:
             status = "UNASSESSABLE"
-            feedback = "Chin clearance unavailable" if name == "Pull-up" else "Trunk rotation unavailable"
+            feedback = "Show the face, calibrated bar and full hang" if name == "Pull-up" else "Show trunk, hips and seated legs"
             if name == "Pull-up" and self.metrics.get("pull_min_elbow_deg", Metric()).value is not None:
                 feedback += f" (elbow {self.metrics['pull_min_elbow_deg'].value:.0f} deg)"
         elif essential_failed:
