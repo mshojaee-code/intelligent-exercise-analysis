@@ -15,7 +15,7 @@ from exercise_analysis.session import Session, config
 from exercise_analysis.ui.dashboard import render
 
 
-def run(source, model, bundle, output, manual=None, headless=False):
+def run(source, model, bundle, output, manual=None, headless=False, *, on_frame=None):
     if not headless and sys.platform.startswith("linux") and not os.getenv("DISPLAY"):
         raise ValueError("Open the dashboard in a desktop session or use --headless")
     settings = config("pose")
@@ -37,6 +37,8 @@ def run(source, model, bundle, output, manual=None, headless=False):
                 pose = estimator.estimate(frame)
                 height, width = frame.bgr.shape[:2]
                 state = session.step(pose, width / height)
+                if on_frame is not None:
+                    on_frame(state)
                 if headless:
                     continue
                 dashboard = render(frame.bgr, pose, state, session.visibility,
