@@ -8,8 +8,12 @@ from exercise_analysis.features.joint_angles import AngleFrame
 from exercise_analysis.pose import PoseFrame
 
 
+# Arithmetic tolerance for inclusive boundaries in degrees or normalized widths.
+EPSILON = 1e-9
+
+
 FLEXION = {
-    "Squat": ("Standing", "Descending", "Deep"),
+    "Squat": ("Standing", "Descending", "Attempt depth"),
     "Push-up": ("Extended", "Lowering", "Bent"),
     "Pull-up": ("Hanging", "Pulling", "Upper"),
 }
@@ -19,6 +23,7 @@ class Movement:
     def __init__(self, exercise, config):
         self.name = exercise
         self.limits = config[exercise]
+        self.min_duration = config["min_cycle_seconds"]
         self.reset()
 
     def reset(self):
@@ -36,23 +41,25 @@ class Movement:
             finished = self.jack(value, now)
         else:
             finished = self.twist(value, now)
-        return start if finished else None
+        return start if finished and now - start + EPSILON >= self.min_duration else None
 
     def flex(self, angle, now):
         ready, moving, peak = FLEXION[self.name]
         limits = self.limits
         self.progress = max(0., min(1., (limits["start_deg"] - angle) /
                                     (limits["start_deg"] - limits["peak_deg"])))
-        if angle >= limits["start_deg"]:
+        if angle + EPSILON >= limits["start_deg"]:
             finished = self.phase in (peak, "Returning")
             self.phase = ready
             self.started = now
             return finished
-        if self.phase == ready and angle <= limits["depart_deg"]:
+        if self.phase == "Find start" and angle + EPSILON >= limits.get("acquire_deg", limits["start_deg"]):
+            self.phase, self.started = ready, now
+        if self.phase == ready and angle <= limits["depart_deg"] + EPSILON:
             self.phase = moving
-        if self.phase == moving and angle <= limits["peak_deg"]:
+        if self.phase == moving and angle <= limits["peak_deg"] + EPSILON:
             self.phase = peak
-        elif self.phase == peak and angle >= limits["depart_deg"]:
+        elif self.phase == peak and angle + EPSILON >= limits["depart_deg"]:
             self.phase = "Returning"
         return False
 
@@ -70,13 +77,13 @@ class Movement:
         return False
 
     def twist(self, offset, now):
-        if abs(offset) <= self.limits["center_span"]:
-            if self.phase == "First side" and self.limits["require_opposite_side"]:
+        if abs(offset) <= self.limits["center_span"] + EPSILON:
+            if self.phase == "First side":
                 return False  # Center is crossed on the way to the opposite side.
-            finished = self.phase in ("First side", "Opposite side")
+            finished = self.phase == "Opposite side"
             self.phase, self.progress, self.started = "Center", 0., now
             return finished
-        if abs(offset) >= self.limits["side_span"]:
+        if abs(offset) + EPSILON >= self.limits["side_span"]:
             sign = 1 if offset > 0 else -1
             if self.phase == "Center":
                 self.phase, self.progress, self.direction = "First side", .5, sign
@@ -129,9 +136,10 @@ def measurement(exercise, pose, angles, config, visibility, aspect):
         offset = (left[0] + right[0] - hip[0] - points["RIGHT_HIP"][0]) / (2 * hip_span)
         return offset, ""
     span = abs(points["LEFT_ANKLE"][0] - points["RIGHT_ANKLE"][0]) / hip_span
-    if span >= limits["open_span"] and max(left[1], right[1]) < min(shoulder[1], points["RIGHT_SHOULDER"][1]):
+    arm_gate = (min(shoulder[1], points["RIGHT_SHOULDER"][1]) + min(hip[1], points["RIGHT_HIP"][1])) / 2
+    if span + EPSILON >= limits["open_span"] and max(left[1], right[1]) <= arm_gate + EPSILON:
         return "open", ""
-    if span <= limits["closed_span"] and min(left[1], right[1]) >= max(hip[1], points["RIGHT_HIP"][1]):
+    if span <= limits["closed_span"] + EPSILON and min(left[1], right[1]) + EPSILON >= max(hip[1], points["RIGHT_HIP"][1]):
         return "closed", ""
     return "between", ""
 
@@ -159,16 +167,15 @@ class SessionCounter:
     def __init__(self, config, visibility):
         for name in FLEXION:
             limits = config[name]
-            if not 0 <= limits["peak_deg"] < limits["depart_deg"] < limits["start_deg"] <= 180:
+            acquire = limits.get("acquire_deg", limits["start_deg"])
+            if not 0 <= limits["peak_deg"] < limits["depart_deg"] < acquire <= limits["start_deg"] <= 180:
                 raise ValueError(f"Invalid flexion thresholds for {name}")
         jack, twist = config["Jumping Jack"], config["Russian Twist"]
         if not 0 < jack["closed_span"] < jack["open_span"]:
             raise ValueError("Invalid jumping jack span thresholds")
         if not 0 <= twist["center_span"] < twist["side_span"] or twist["max_hand_span"] <= 0:
             raise ValueError("Invalid twist span thresholds")
-        if type(twist["require_opposite_side"]) is not bool:
-            raise ValueError("require_opposite_side must be a boolean")
-        for key in ("max_gap_seconds", "switch_confirm_seconds", "max_side_hip_width_over_torso",
+        for key in ("min_cycle_seconds", "max_gap_seconds", "switch_confirm_seconds", "max_side_hip_width_over_torso",
                     "min_front_hip_width_over_torso"):
             if not isfinite(config[key]) or config[key] <= 0:
                 raise ValueError(f"{key} must be finite and positive")

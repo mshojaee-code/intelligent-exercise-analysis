@@ -10,6 +10,7 @@ from exercise_analysis.confidence.recognition import Decision, Recognition
 from exercise_analysis.counting.cycles import CountState, SessionCounter
 from exercise_analysis.features.joint_angles import Angles, extract
 from exercise_analysis.form.assessment import Assessment, FormAssessor
+from exercise_analysis.form.geometry import motion_angles
 from exercise_analysis.preprocessing.ema import AngleEMA
 from exercise_analysis.reporting.summary import write_summary
 
@@ -38,11 +39,12 @@ class Session:
         self.classifier = classifier
         self.visibility = pose_settings["min_visibility"]
         self.ema = AngleEMA(pose_settings["ema_alpha"], pose_settings["ema_max_gap_seconds"])
+        self.motion_ema = AngleEMA(pose_settings["ema_alpha"], pose_settings["ema_max_gap_seconds"])
         self.exercises = config("baseline")["exercises"]
         self.controls = Recognition(self.exercises, **config("recognition"))
         counting = config("counting")
         self.counter = SessionCounter(counting, self.visibility)
-        self.assessor = FormAssessor(config("form"), self.visibility, counting["Jumping Jack"]["open_span"])
+        self.assessor = FormAssessor(config("form"), self.visibility)
         self.durations = dict.fromkeys(self.exercises, 0.)
         self.session_id = uuid4().hex
         self.start = self.previous_time = self.previous_active = self.last = None
@@ -60,8 +62,9 @@ class Session:
         smooth = self.ema.update(raw)
         prediction = self.classifier.predict_scored(raw)
         decision = self.controls.update(pose.seconds, prediction)
-        count = self.counter.update(decision, pose, smooth, aspect)
-        result = self.assessor.update(count, pose, smooth, aspect)
+        motion = self.motion_ema.update(motion_angles(pose, aspect, self.visibility))
+        count = self.counter.update(decision, pose, motion, aspect)
+        result = self.assessor.update(count, pose, motion, aspect)
         if count.event != (result.cycle if result else None):
             raise ValueError("Incomplete session: cycle and quality events differ")
         if self.start is None:

@@ -11,8 +11,8 @@ choose another directory. Runtime writes only the summary.
 | exercise | One canonical exercise in baseline configuration order |
 | active_seconds | Seconds assigned to this exercise, formatted to six decimal places |
 | total_cycles | Completed movement cycles from this exercise's counter |
-| good | Cycles meeting the observable form targets |
-| bad | Cycles assessed as failing a form target |
+| good | Cycles meeting every essential fixed-protocol target with sufficient evidence |
+| bad | Cycles assessed as clearly violating an essential target |
 | unassessable | Completed cycles with insufficient evidence for a quality judgment |
 
 The timer starts at the first processed frame. Each interval between processed
@@ -39,14 +39,14 @@ A startup failure before the first frame produces no report.
 
 The offline automatic run covered 110 frames and 4.36 seconds between its first
 and last timestamps. Squat was active for 2.60 s and Jumping Jack for 0.04 s.
-The other 1.72 s had an Unknown decision. One squat completed at 3.36 s and the
-provisional depth rule produced BAD with the cue “Go deeper.”
+The other 1.72 s had an Unknown decision. One squat completed at 3.64 s and the
+provisional depth rule produced BAD with the cue “Lower hips to parallel.”
 
 ```csv
 session_id,exercise,active_seconds,total_cycles,good,bad,unassessable
-cd5ac53a0dda40c08d9b136a52827eb4,Squat,2.600000,1,0,1,0
-cd5ac53a0dda40c08d9b136a52827eb4,Push-up,0.000000,0,0,0,0
-cd5ac53a0dda40c08d9b136a52827eb4,Pull-up,0.000000,0,0,0,0
-cd5ac53a0dda40c08d9b136a52827eb4,Jumping Jack,0.040000,0,0,0,0
-cd5ac53a0dda40c08d9b136a52827eb4,Russian Twist,0.000000,0,0,0,0
+e820e87cf443455fa7efb8e214095434,Squat,2.600000,1,0,1,0
+e820e87cf443455fa7efb8e214095434,Push-up,0.000000,0,0,0,0
+e820e87cf443455fa7efb8e214095434,Pull-up,0.000000,0,0,0,0
+e820e87cf443455fa7efb8e214095434,Jumping Jack,0.040000,0,0,0,0
+e820e87cf443455fa7efb8e214095434,Russian Twist,0.000000,0,0,0,0
 ```
