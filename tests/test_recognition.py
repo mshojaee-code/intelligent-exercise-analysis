@@ -55,6 +55,21 @@ class RecognitionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.policy.update(2, evidence())
 
+    def test_bounded_consensus_uses_real_support_and_switches(self):
+        policy = Recognition(LABEL_MAP.values(), min_score=.6, min_margin=.25, min_share=.6,
+                             window_seconds=1.2, hold_seconds=.65, max_votes=90, min_votes=3)
+        for t in (0, .1, .2):
+            policy.update(t, evidence())
+        self.assertEqual(policy.update(.7, evidence(score=.5)).active, "Squat")
+        self.assertEqual(policy.update(.75, MISSING).active, "Unknown")
+        self.assertEqual(policy.update(.86, evidence(score=.5)).active, "Unknown")
+        for t in (1.1, 1.2, 1.3, 1.4):
+            result = policy.update(t, evidence("Push-up"))
+        self.assertEqual(result.active, "Push-up")
+        policy.select("Squat")
+        policy.select(None)
+        self.assertEqual(policy.update(1.5, evidence(score=.5)).active, "Unknown")
+
     def test_manual_choices_preserve_validity_and_reset_auto(self):
         for t in (0, .01, .02):
             self.policy.update(t, evidence())
