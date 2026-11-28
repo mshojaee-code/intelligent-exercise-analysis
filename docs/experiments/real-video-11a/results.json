@@ -1,0 +1,5441 @@
+[
+  {
+    "video_path": "5034577-hd_1280_720_30fps.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 495,
+    "source_duration_s": 16.5165,
+    "processed_frames": 495,
+    "timestamp_span_s": 16.483133333333335,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 1,
+    "exercise_cycles": 1,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 1,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 34.617639782738486,
+    "warning_frames": {},
+    "unavailable_rules": {
+      "squat_thigh_deg": 1,
+      "squat_standing_deg": 1,
+      "squat_upright": 1,
+      "squat_heel_travel_torsos": 1,
+      "cycle_coverage": 1
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "52c0b11036fcdc99f7ff62fb195769a3f1bbf1e4e8db92115caf61b586aeb0ab",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Jumping Jack": 136,
+        "Squat": 325,
+        "Push-up": 34
+      },
+      "active": {
+        "Squat": 495
+      },
+      "phase": {
+        "Standing": 422,
+        "Descending": 60,
+        "Attempt depth": 8,
+        "Returning": 5
+      },
+      "pose": {
+        "tracked": 495,
+        "world_shoulders_hips": 495,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 1,
+            "started": 6.006,
+            "completed": 6.973633333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "5034577-hd_1280_720_30fps.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 495,
+    "source_duration_s": 16.5165,
+    "processed_frames": 495,
+    "timestamp_span_s": 16.483133333333335,
+    "unknown_frames": 317,
+    "unknown_pct": 64.04040404040404,
+    "wrong_active_frames": 4,
+    "wrong_active_labels": {
+      "Push-up": 4
+    },
+    "total_cycles": 1,
+    "exercise_cycles": 1,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 1,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 33.02921913796804,
+    "warning_frames": {
+      "Recognition gap": 317,
+      "Low score": 282,
+      "Gathering votes": 12,
+      "Split vote": 23,
+      "Confirming exercise": 4
+    },
+    "unavailable_rules": {
+      "squat_thigh_deg": 1,
+      "squat_standing_deg": 1,
+      "squat_upright": 1,
+      "squat_heel_travel_torsos": 1,
+      "cycle_coverage": 1
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "52c0b11036fcdc99f7ff62fb195769a3f1bbf1e4e8db92115caf61b586aeb0ab",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.8080808080808081,
+    "observations": {
+      "raw": {
+        "Jumping Jack": 136,
+        "Squat": 325,
+        "Push-up": 34
+      },
+      "active": {
+        "Unknown": 317,
+        "Squat": 174,
+        "Push-up": 4
+      },
+      "phase": {
+        "Find start": 168,
+        "Standing": 245,
+        "Descending": 66,
+        "Attempt depth": 8,
+        "Returning": 8
+      },
+      "pose": {
+        "tracked": 495,
+        "world_shoulders_hips": 495,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 1,
+            "started": 5.739066666666667,
+            "completed": 7.073733333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_001_squat_bad_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 485,
+    "source_duration_s": 32.333333333333336,
+    "processed_frames": 485,
+    "timestamp_span_s": 32.266666666666666,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 14,
+    "exercise_cycles": 14,
+    "good": 0,
+    "bad": 5,
+    "unassessable": 9,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 26.737464930527835,
+    "warning_frames": {
+      "Tracking lost": 103,
+      "Required joints unreliable": 159,
+      "Use a side view": 5
+    },
+    "unavailable_rules": {
+      "squat_thigh_deg": 10,
+      "squat_standing_deg": 7,
+      "squat_upright": 7,
+      "squat_heel_travel_torsos": 9,
+      "cycle_coverage": 9
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "68e23ba81449591d793cb71c93bff36083d2c3c552ac984309b8ddb834f12c04",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Missing": 210,
+        "Squat": 108,
+        "Push-up": 104,
+        "Russian Twist": 37,
+        "Pull-up": 22,
+        "Jumping Jack": 4
+      },
+      "active": {
+        "Squat": 485
+      },
+      "phase": {
+        "Find start": 59,
+        "Standing": 165,
+        "Attempt depth": 144,
+        "Returning": 101,
+        "Descending": 16
+      },
+      "pose": {
+        "tracked": 382,
+        "world_shoulders_hips": 382,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 1,
+            "started": 3.2,
+            "completed": 3.8666666666666667
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 2,
+            "started": 3.933333333333333,
+            "completed": 4.6
+          },
+          "status": "BAD",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_thigh_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 3,
+            "started": 5.266666666666667,
+            "completed": 7.133333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 4,
+            "started": 7.2,
+            "completed": 8.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_upright",
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": [
+            "squat_thigh_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 5,
+            "started": 13.4,
+            "completed": 15.066666666666666
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 6,
+            "started": 15.6,
+            "completed": 17.333333333333332
+          },
+          "status": "BAD",
+          "satisfied": [
+            "squat_thigh_deg",
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_upright",
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 7,
+            "started": 17.733333333333334,
+            "completed": 19.466666666666665
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 8,
+            "started": 19.666666666666668,
+            "completed": 20.2
+          },
+          "status": "BAD",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_upright",
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": [
+            "squat_thigh_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 9,
+            "started": 20.53333333333333,
+            "completed": 21.4
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_thigh_deg",
+            "squat_upright"
+          ],
+          "unavailable": [
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 10,
+            "started": 21.933333333333334,
+            "completed": 23.6
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 11,
+            "started": 23.6,
+            "completed": 24.933333333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_thigh_deg"
+          ],
+          "failed": [],
+          "unavailable": [
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 12,
+            "started": 26.133333333333333,
+            "completed": 27.733333333333334
+          },
+          "status": "BAD",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_upright",
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": [
+            "squat_thigh_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 13,
+            "started": 28.2,
+            "completed": 29.4
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 14,
+            "started": 29.733333333333334,
+            "completed": 32.0
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_upright"
+          ],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_001_squat_bad_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 485,
+    "source_duration_s": 32.333333333333336,
+    "processed_frames": 485,
+    "timestamp_span_s": 32.266666666666666,
+    "unknown_frames": 409,
+    "unknown_pct": 84.3298969072165,
+    "wrong_active_frames": 18,
+    "wrong_active_labels": {
+      "Russian Twist": 7,
+      "Push-up": 11
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 46.234134282087,
+    "warning_frames": {
+      "Tracking lost": 103,
+      "Recognition gap": 409,
+      "Missing landmarks": 210,
+      "Gathering votes": 48,
+      "Low score": 140,
+      "Required joints unreliable": 6,
+      "Split vote": 11,
+      "Need horizontal torso": 11,
+      "Use a side view": 1,
+      "Confirming exercise": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "68e23ba81449591d793cb71c93bff36083d2c3c552ac984309b8ddb834f12c04",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 3.711340206185567,
+    "observations": {
+      "raw": {
+        "Missing": 210,
+        "Squat": 108,
+        "Push-up": 104,
+        "Russian Twist": 37,
+        "Pull-up": 22,
+        "Jumping Jack": 4
+      },
+      "active": {
+        "Unknown": 409,
+        "Squat": 58,
+        "Russian Twist": 7,
+        "Push-up": 11
+      },
+      "phase": {
+        "Find start": 343,
+        "Standing": 91,
+        "Descending": 20,
+        "Attempt depth": 31
+      },
+      "pose": {
+        "tracked": 382,
+        "world_shoulders_hips": 382,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "subject_001_squat_good_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 479,
+    "source_duration_s": 31.933333333333334,
+    "processed_frames": 479,
+    "timestamp_span_s": 31.866666666666667,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 6,
+    "exercise_cycles": 6,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 6,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 40.21577964803531,
+    "warning_frames": {
+      "Use a side view": 14,
+      "Tracking lost": 136,
+      "Required joints unreliable": 217
+    },
+    "unavailable_rules": {
+      "squat_thigh_deg": 6,
+      "squat_standing_deg": 3,
+      "squat_upright": 3,
+      "squat_heel_travel_torsos": 6,
+      "cycle_coverage": 6
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "71408510449717414d614e1e1a0a7ca498b7d8463f81d3375ea9da87fc18e7af",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Russian Twist": 31,
+        "Push-up": 136,
+        "Missing": 233,
+        "Pull-up": 29,
+        "Squat": 48,
+        "Jumping Jack": 2
+      },
+      "active": {
+        "Squat": 479
+      },
+      "phase": {
+        "Find start": 64,
+        "Standing": 74,
+        "Attempt depth": 171,
+        "Returning": 164,
+        "Descending": 6
+      },
+      "pose": {
+        "tracked": 343,
+        "world_shoulders_hips": 343,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 1,
+            "started": 0.7333333333333333,
+            "completed": 1.8
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 2,
+            "started": 2.0,
+            "completed": 6.4
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_standing_deg",
+            "squat_upright"
+          ],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 3,
+            "started": 6.6,
+            "completed": 8.2
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_standing_deg",
+            "squat_upright"
+          ],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 4,
+            "started": 15.2,
+            "completed": 17.53333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 5,
+            "started": 22.666666666666668,
+            "completed": 28.0
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 6,
+            "started": 28.0,
+            "completed": 29.933333333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_standing_deg"
+          ],
+          "failed": [
+            "squat_upright"
+          ],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_001_squat_good_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 479,
+    "source_duration_s": 31.933333333333334,
+    "processed_frames": 479,
+    "timestamp_span_s": 31.866666666666667,
+    "unknown_frames": 423,
+    "unknown_pct": 88.3089770354906,
+    "wrong_active_frames": 44,
+    "wrong_active_labels": {
+      "Push-up": 44
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 50.969510841677156,
+    "warning_frames": {
+      "Recognition gap": 423,
+      "Gathering votes": 52,
+      "Need horizontal torso": 21,
+      "Use a side view": 4,
+      "Low score": 122,
+      "Tracking lost": 136,
+      "Missing landmarks": 233,
+      "Split vote": 16,
+      "Confirming exercise": 2
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "71408510449717414d614e1e1a0a7ca498b7d8463f81d3375ea9da87fc18e7af",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 9.18580375782881,
+    "observations": {
+      "raw": {
+        "Russian Twist": 31,
+        "Push-up": 136,
+        "Missing": 233,
+        "Pull-up": 29,
+        "Squat": 48,
+        "Jumping Jack": 2
+      },
+      "active": {
+        "Unknown": 423,
+        "Push-up": 44,
+        "Squat": 12
+      },
+      "phase": {
+        "Find start": 418,
+        "Standing": 31,
+        "Extended": 20,
+        "Descending": 10
+      },
+      "pose": {
+        "tracked": 343,
+        "world_shoulders_hips": 343,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "subject_002_squat_bad_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 479,
+    "source_duration_s": 31.933333333333334,
+    "processed_frames": 479,
+    "timestamp_span_s": 31.866666666666667,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 3,
+    "exercise_cycles": 3,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 3,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 51.06270704911,
+    "warning_frames": {
+      "Required joints unreliable": 182,
+      "Tracking lost": 38
+    },
+    "unavailable_rules": {
+      "squat_thigh_deg": 3,
+      "squat_standing_deg": 2,
+      "squat_upright": 2,
+      "squat_heel_travel_torsos": 1,
+      "cycle_coverage": 1
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "f774c1c8a0cd607f92f1b60fa3a00b97ccc1e72b58120ee830ce5054d1ce713b",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Missing": 192,
+        "Squat": 106,
+        "Russian Twist": 62,
+        "Push-up": 91,
+        "Pull-up": 13,
+        "Jumping Jack": 15
+      },
+      "active": {
+        "Squat": 479
+      },
+      "phase": {
+        "Find start": 159,
+        "Standing": 170,
+        "Attempt depth": 80,
+        "Returning": 62,
+        "Descending": 8
+      },
+      "pose": {
+        "tracked": 441,
+        "world_shoulders_hips": 441,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 1,
+            "started": 1.8666666666666667,
+            "completed": 4.0
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 2,
+            "started": 8.133333333333333,
+            "completed": 10.466666666666667
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "squat_standing_deg",
+            "squat_upright"
+          ],
+          "failed": [
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": [
+            "squat_thigh_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 3,
+            "started": 26.266666666666666,
+            "completed": 27.133333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_002_squat_bad_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 479,
+    "source_duration_s": 31.933333333333334,
+    "processed_frames": 479,
+    "timestamp_span_s": 31.866666666666667,
+    "unknown_frames": 373,
+    "unknown_pct": 77.8705636743215,
+    "wrong_active_frames": 55,
+    "wrong_active_labels": {
+      "Push-up": 28,
+      "Russian Twist": 25,
+      "Jumping Jack": 2
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 55.23189828433909,
+    "warning_frames": {
+      "Recognition gap": 373,
+      "Missing landmarks": 192,
+      "Tracking lost": 38,
+      "Low score": 139,
+      "Gathering votes": 32,
+      "Split vote": 10,
+      "Confirming exercise": 16,
+      "Need horizontal torso": 22,
+      "Required joints unreliable": 13,
+      "Use a front view": 2
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "f774c1c8a0cd607f92f1b60fa3a00b97ccc1e72b58120ee830ce5054d1ce713b",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 11.482254697286013,
+    "observations": {
+      "raw": {
+        "Missing": 192,
+        "Squat": 106,
+        "Russian Twist": 62,
+        "Push-up": 91,
+        "Pull-up": 13,
+        "Jumping Jack": 15
+      },
+      "active": {
+        "Unknown": 373,
+        "Squat": 51,
+        "Push-up": 28,
+        "Russian Twist": 25,
+        "Jumping Jack": 2
+      },
+      "phase": {
+        "Find start": 352,
+        "Standing": 112,
+        "Attempt depth": 10,
+        "Descending": 5
+      },
+      "pose": {
+        "tracked": 441,
+        "world_shoulders_hips": 441,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "subject_002_squat_good_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 467,
+    "source_duration_s": 31.133333333333333,
+    "processed_frames": 467,
+    "timestamp_span_s": 31.066666666666666,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 7,
+    "exercise_cycles": 7,
+    "good": 3,
+    "bad": 1,
+    "unassessable": 3,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 40.22486132633505,
+    "warning_frames": {
+      "Tracking lost": 2,
+      "Required joints unreliable": 2
+    },
+    "unavailable_rules": {
+      "squat_thigh_deg": 2,
+      "squat_standing_deg": 4,
+      "squat_upright": 4,
+      "squat_heel_travel_torsos": 3,
+      "cycle_coverage": 3
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "c9d816baa94de1a9db2aed1d0684db86052d4077d02189373d79466e12951939",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Squat": 265,
+        "Russian Twist": 67,
+        "Push-up": 74,
+        "Pull-up": 58,
+        "Jumping Jack": 1,
+        "Missing": 2
+      },
+      "active": {
+        "Squat": 467
+      },
+      "phase": {
+        "Standing": 114,
+        "Descending": 39,
+        "Attempt depth": 117,
+        "Returning": 197
+      },
+      "pose": {
+        "tracked": 465,
+        "world_shoulders_hips": 465,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 1,
+            "started": 0.4,
+            "completed": 1.2666666666666666
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 2,
+            "started": 1.2666666666666666,
+            "completed": 1.8
+          },
+          "status": "BAD",
+          "satisfied": [],
+          "failed": [
+            "squat_thigh_deg",
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": [
+            "squat_standing_deg",
+            "squat_upright"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 3,
+            "started": 2.6666666666666665,
+            "completed": 3.933333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 4,
+            "started": 5.866666666666666,
+            "completed": 6.2
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [
+            "squat_thigh_deg"
+          ],
+          "unavailable": [
+            "squat_standing_deg",
+            "squat_upright",
+            "squat_heel_travel_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 5,
+            "started": 6.933333333333334,
+            "completed": 9.933333333333334
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright"
+          ],
+          "failed": [
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 6,
+            "started": 12.4,
+            "completed": 15.666666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright"
+          ],
+          "failed": [
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Squat",
+            "number": 7,
+            "started": 15.933333333333334,
+            "completed": 27.066666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "squat_thigh_deg",
+            "squat_standing_deg",
+            "squat_upright"
+          ],
+          "failed": [
+            "squat_heel_travel_torsos"
+          ],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_002_squat_good_side.mp4",
+    "exercise": "Squat",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 467,
+    "source_duration_s": 31.133333333333333,
+    "processed_frames": 467,
+    "timestamp_span_s": 31.066666666666666,
+    "unknown_frames": 287,
+    "unknown_pct": 61.45610278372591,
+    "wrong_active_frames": 27,
+    "wrong_active_labels": {
+      "Push-up": 21,
+      "Russian Twist": 6
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 56.027502341728656,
+    "warning_frames": {
+      "Recognition gap": 287,
+      "Gathering votes": 36,
+      "Low score": 227,
+      "Confirming exercise": 17,
+      "Need horizontal torso": 7,
+      "Split vote": 21,
+      "Tracking lost": 2,
+      "Missing landmarks": 2,
+      "Required joints unreliable": 3,
+      "Small score margin": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "c9d816baa94de1a9db2aed1d0684db86052d4077d02189373d79466e12951939",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 5.781584582441114,
+    "observations": {
+      "raw": {
+        "Squat": 265,
+        "Russian Twist": 67,
+        "Push-up": 74,
+        "Pull-up": 58,
+        "Jumping Jack": 1,
+        "Missing": 2
+      },
+      "active": {
+        "Unknown": 287,
+        "Squat": 153,
+        "Push-up": 21,
+        "Russian Twist": 6
+      },
+      "phase": {
+        "Find start": 231,
+        "Standing": 109,
+        "Descending": 48,
+        "Attempt depth": 79
+      },
+      "pose": {
+        "tracked": 465,
+        "world_shoulders_hips": 465,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "4804794-hd_1280_720_25fps.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 291,
+    "source_duration_s": 11.64,
+    "processed_frames": 291,
+    "timestamp_span_s": 11.6,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 51.87893909720424,
+    "warning_frames": {
+      "Required joints unreliable": 107
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "da45549a25dc48a0ee157386423346fb545e0776d1765eda13c6ec6abdb4d5d7",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Missing": 291
+      },
+      "active": {
+        "Push-up": 291
+      },
+      "phase": {
+        "Extended": 175,
+        "Lowering": 2,
+        "Bent": 55,
+        "Find start": 59
+      },
+      "pose": {
+        "tracked": 291,
+        "world_shoulders_hips": 291,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "4804794-hd_1280_720_25fps.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 291,
+    "source_duration_s": 11.64,
+    "processed_frames": 291,
+    "timestamp_span_s": 11.6,
+    "unknown_frames": 291,
+    "unknown_pct": 100.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 40.62472177257165,
+    "warning_frames": {
+      "Recognition gap": 291,
+      "Missing landmarks": 291
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "da45549a25dc48a0ee157386423346fb545e0776d1765eda13c6ec6abdb4d5d7",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Missing": 291
+      },
+      "active": {
+        "Unknown": 291
+      },
+      "phase": {
+        "Find start": 291
+      },
+      "pose": {
+        "tracked": 291,
+        "world_shoulders_hips": 291,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "subject_001_push_up_bad_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 378,
+    "source_duration_s": 25.2,
+    "processed_frames": 378,
+    "timestamp_span_s": 25.133333333333333,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 18,
+    "exercise_cycles": 18,
+    "good": 1,
+    "bad": 15,
+    "unassessable": 2,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 31.14545174270583,
+    "warning_frames": {},
+    "unavailable_rules": {
+      "push_flex_deg": 9
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "d41d899c9c89c5cc99bb8e3c3602f284aa774371632c79900bb918b1b80e1976",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 378
+      },
+      "active": {
+        "Push-up": 378
+      },
+      "phase": {
+        "Extended": 211,
+        "Lowering": 17,
+        "Bent": 119,
+        "Returning": 31
+      },
+      "pose": {
+        "tracked": 378,
+        "world_shoulders_hips": 378,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 4.133333333333333,
+            "completed": 5.066666666666666
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg",
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 5.533333333333333,
+            "completed": 6.333333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 6.733333333333333,
+            "completed": 7.6
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 8.066666666666666,
+            "completed": 8.8
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 9.266666666666666,
+            "completed": 9.933333333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 10.4,
+            "completed": 11.133333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 11.533333333333333,
+            "completed": 12.333333333333334
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 12.666666666666666,
+            "completed": 13.466666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 13.866666666666667,
+            "completed": 14.733333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 10,
+            "started": 15.066666666666666,
+            "completed": 15.866666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_flex_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 11,
+            "started": 16.2,
+            "completed": 17.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 12,
+            "started": 17.466666666666665,
+            "completed": 18.133333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 13,
+            "started": 18.6,
+            "completed": 19.333333333333332
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 14,
+            "started": 19.733333333333334,
+            "completed": 20.466666666666665
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 15,
+            "started": 20.8,
+            "completed": 21.666666666666668
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 16,
+            "started": 21.933333333333334,
+            "completed": 22.733333333333334
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 17,
+            "started": 23.133333333333333,
+            "completed": 23.8
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 18,
+            "started": 24.266666666666666,
+            "completed": 24.933333333333334
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg",
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_001_push_up_bad_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 378,
+    "source_duration_s": 25.2,
+    "processed_frames": 378,
+    "timestamp_span_s": 25.133333333333333,
+    "unknown_frames": 2,
+    "unknown_pct": 0.5291005291005291,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 18,
+    "exercise_cycles": 18,
+    "good": 1,
+    "bad": 15,
+    "unassessable": 2,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 41.501193822134,
+    "warning_frames": {
+      "Recognition gap": 2,
+      "Gathering votes": 2
+    },
+    "unavailable_rules": {
+      "push_flex_deg": 9
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "d41d899c9c89c5cc99bb8e3c3602f284aa774371632c79900bb918b1b80e1976",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 378
+      },
+      "active": {
+        "Unknown": 2,
+        "Push-up": 376
+      },
+      "phase": {
+        "Find start": 2,
+        "Extended": 209,
+        "Lowering": 17,
+        "Bent": 119,
+        "Returning": 31
+      },
+      "pose": {
+        "tracked": 378,
+        "world_shoulders_hips": 378,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 4.133333333333333,
+            "completed": 5.066666666666666
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg",
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 5.533333333333333,
+            "completed": 6.333333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 6.733333333333333,
+            "completed": 7.6
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 8.066666666666666,
+            "completed": 8.8
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 9.266666666666666,
+            "completed": 9.933333333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 10.4,
+            "completed": 11.133333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 11.533333333333333,
+            "completed": 12.333333333333334
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 12.666666666666666,
+            "completed": 13.466666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 13.866666666666667,
+            "completed": 14.733333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 10,
+            "started": 15.066666666666666,
+            "completed": 15.866666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_flex_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 11,
+            "started": 16.2,
+            "completed": 17.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 12,
+            "started": 17.466666666666665,
+            "completed": 18.133333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 13,
+            "started": 18.6,
+            "completed": 19.333333333333332
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 14,
+            "started": 19.733333333333334,
+            "completed": 20.466666666666665
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 15,
+            "started": 20.8,
+            "completed": 21.666666666666668
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 16,
+            "started": 21.933333333333334,
+            "completed": 22.733333333333334
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 17,
+            "started": 23.133333333333333,
+            "completed": 23.8
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg"
+          ],
+          "failed": [
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 18,
+            "started": 24.266666666666666,
+            "completed": 24.933333333333334
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg",
+            "push_plank_knee_deg"
+          ],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_001_push_up_good_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 434,
+    "source_duration_s": 28.933333333333334,
+    "processed_frames": 434,
+    "timestamp_span_s": 28.866666666666667,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 9,
+    "exercise_cycles": 9,
+    "good": 1,
+    "bad": 6,
+    "unassessable": 2,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 31.182234712737717,
+    "warning_frames": {
+      "Required joints unreliable": 47,
+      "Need horizontal torso": 5,
+      "Tracking lost": 2
+    },
+    "unavailable_rules": {
+      "push_flex_deg": 2
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "f437f915e8d1cb8dd651bbf3f63a80527bac74200429075bd1d3d6ec7c6a6a0d",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 424,
+        "Squat": 4,
+        "Pull-up": 1,
+        "Jumping Jack": 1,
+        "Russian Twist": 2,
+        "Missing": 2
+      },
+      "active": {
+        "Push-up": 434
+      },
+      "phase": {
+        "Find start": 63,
+        "Extended": 187,
+        "Lowering": 18,
+        "Bent": 137,
+        "Returning": 29
+      },
+      "pose": {
+        "tracked": 432,
+        "world_shoulders_hips": 432,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 7.266666666666667,
+            "completed": 8.6
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 9.666666666666666,
+            "completed": 11.0
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 12.066666666666666,
+            "completed": 13.4
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 14.333333333333334,
+            "completed": 15.666666666666666
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 16.53333333333333,
+            "completed": 17.866666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 18.733333333333334,
+            "completed": 20.133333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 21.2,
+            "completed": 22.53333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 23.266666666666666,
+            "completed": 24.8
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 25.466666666666665,
+            "completed": 26.866666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_001_push_up_good_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 434,
+    "source_duration_s": 28.933333333333334,
+    "processed_frames": 434,
+    "timestamp_span_s": 28.866666666666667,
+    "unknown_frames": 15,
+    "unknown_pct": 3.456221198156682,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 9,
+    "exercise_cycles": 9,
+    "good": 1,
+    "bad": 6,
+    "unassessable": 2,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 29.99478733376697,
+    "warning_frames": {
+      "Recognition gap": 15,
+      "Gathering votes": 2,
+      "Low score": 11,
+      "Required joints unreliable": 45,
+      "Need horizontal torso": 2,
+      "Tracking lost": 2,
+      "Missing landmarks": 2
+    },
+    "unavailable_rules": {
+      "push_flex_deg": 2
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "f437f915e8d1cb8dd651bbf3f63a80527bac74200429075bd1d3d6ec7c6a6a0d",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 424,
+        "Squat": 4,
+        "Pull-up": 1,
+        "Jumping Jack": 1,
+        "Russian Twist": 2,
+        "Missing": 2
+      },
+      "active": {
+        "Unknown": 15,
+        "Push-up": 419
+      },
+      "phase": {
+        "Find start": 63,
+        "Extended": 187,
+        "Lowering": 18,
+        "Bent": 137,
+        "Returning": 29
+      },
+      "pose": {
+        "tracked": 432,
+        "world_shoulders_hips": 432,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 7.266666666666667,
+            "completed": 8.6
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 9.666666666666666,
+            "completed": 11.0
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 12.066666666666666,
+            "completed": 13.4
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 14.333333333333334,
+            "completed": 15.666666666666666
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 16.53333333333333,
+            "completed": 17.866666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 18.733333333333334,
+            "completed": 20.133333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 21.2,
+            "completed": 22.53333333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": [
+            "push_flex_deg"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 23.266666666666666,
+            "completed": 24.8
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 25.466666666666665,
+            "completed": 26.866666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_flex_deg"
+          ],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_002_push_up_bad_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 476,
+    "source_duration_s": 31.733333333333334,
+    "processed_frames": 476,
+    "timestamp_span_s": 31.666666666666668,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 13,
+    "exercise_cycles": 13,
+    "good": 9,
+    "bad": 4,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 61.47435974788854,
+    "warning_frames": {},
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "57dff08c1777529b2f4cf0b58d6efd1e48a214d690ac81dc95cc17c4a39e36ea",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 476
+      },
+      "active": {
+        "Push-up": 476
+      },
+      "phase": {
+        "Find start": 4,
+        "Extended": 188,
+        "Lowering": 21,
+        "Bent": 242,
+        "Returning": 21
+      },
+      "pose": {
+        "tracked": 476,
+        "world_shoulders_hips": 476,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 0.4,
+            "completed": 3.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 3.6666666666666665,
+            "completed": 5.466666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 6.4,
+            "completed": 8.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 9.066666666666666,
+            "completed": 10.466666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 10.933333333333334,
+            "completed": 12.266666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 12.866666666666667,
+            "completed": 14.133333333333333
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 14.799999999999999,
+            "completed": 16.266666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 16.933333333333334,
+            "completed": 18.333333333333332
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 19.266666666666666,
+            "completed": 20.8
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 10,
+            "started": 21.466666666666665,
+            "completed": 23.0
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 11,
+            "started": 23.6,
+            "completed": 24.866666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 12,
+            "started": 25.8,
+            "completed": 27.133333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 13,
+            "started": 28.0,
+            "completed": 29.53333333333333
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_002_push_up_bad_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Bad",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 476,
+    "source_duration_s": 31.733333333333334,
+    "processed_frames": 476,
+    "timestamp_span_s": 31.666666666666668,
+    "unknown_frames": 2,
+    "unknown_pct": 0.42016806722689076,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 13,
+    "exercise_cycles": 13,
+    "good": 9,
+    "bad": 4,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 51.54308818132818,
+    "warning_frames": {
+      "Recognition gap": 2,
+      "Gathering votes": 2
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "57dff08c1777529b2f4cf0b58d6efd1e48a214d690ac81dc95cc17c4a39e36ea",
+    "clip_quality_label": "Bad",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 476
+      },
+      "active": {
+        "Unknown": 2,
+        "Push-up": 474
+      },
+      "phase": {
+        "Find start": 4,
+        "Extended": 188,
+        "Lowering": 21,
+        "Bent": 242,
+        "Returning": 21
+      },
+      "pose": {
+        "tracked": 476,
+        "world_shoulders_hips": 476,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 0.4,
+            "completed": 3.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 3.6666666666666665,
+            "completed": 5.466666666666667
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 6.4,
+            "completed": 8.0
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 9.066666666666666,
+            "completed": 10.466666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 10.933333333333334,
+            "completed": 12.266666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 12.866666666666667,
+            "completed": 14.133333333333333
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 14.799999999999999,
+            "completed": 16.266666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 16.933333333333334,
+            "completed": 18.333333333333332
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 19.266666666666666,
+            "completed": 20.8
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 10,
+            "started": 21.466666666666665,
+            "completed": 23.0
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 11,
+            "started": 23.6,
+            "completed": 24.866666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 12,
+            "started": 25.8,
+            "completed": 27.133333333333333
+          },
+          "status": "BAD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [
+            "push_alignment_deg"
+          ],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 13,
+            "started": 28.0,
+            "completed": 29.53333333333333
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_002_push_up_good_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 468,
+    "source_duration_s": 31.2,
+    "processed_frames": 468,
+    "timestamp_span_s": 31.133333333333333,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 12,
+    "exercise_cycles": 12,
+    "good": 12,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 58.64483038737703,
+    "warning_frames": {},
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "2f4780fbbe7c628051043d3cbc36b0b13c1ab29996d7c69fd9f90180c66181fa",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 468
+      },
+      "active": {
+        "Push-up": 468
+      },
+      "phase": {
+        "Extended": 150,
+        "Lowering": 16,
+        "Bent": 281,
+        "Returning": 21
+      },
+      "pose": {
+        "tracked": 468,
+        "world_shoulders_hips": 468,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 1.8666666666666667,
+            "completed": 4.2
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 4.6,
+            "completed": 6.666666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 6.866666666666666,
+            "completed": 8.8
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 9.266666666666666,
+            "completed": 11.066666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 11.666666666666666,
+            "completed": 13.4
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 13.933333333333334,
+            "completed": 16.0
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 16.53333333333333,
+            "completed": 18.466666666666665
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 19.0,
+            "completed": 20.866666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 21.466666666666665,
+            "completed": 23.333333333333332
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 10,
+            "started": 23.933333333333334,
+            "completed": 25.933333333333334
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 11,
+            "started": 26.4,
+            "completed": 28.266666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 12,
+            "started": 29.133333333333333,
+            "completed": 31.0
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "subject_002_push_up_good_side.mp4",
+    "exercise": "Push-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Mendeley clip label Good",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 468,
+    "source_duration_s": 31.2,
+    "processed_frames": 468,
+    "timestamp_span_s": 31.133333333333333,
+    "unknown_frames": 2,
+    "unknown_pct": 0.42735042735042733,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 12,
+    "exercise_cycles": 12,
+    "good": 12,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 59.81586166280818,
+    "warning_frames": {
+      "Recognition gap": 2,
+      "Gathering votes": 2
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "2f4780fbbe7c628051043d3cbc36b0b13c1ab29996d7c69fd9f90180c66181fa",
+    "clip_quality_label": "Good",
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Push-up": 468
+      },
+      "active": {
+        "Unknown": 2,
+        "Push-up": 466
+      },
+      "phase": {
+        "Find start": 2,
+        "Extended": 148,
+        "Lowering": 16,
+        "Bent": 281,
+        "Returning": 21
+      },
+      "pose": {
+        "tracked": 468,
+        "world_shoulders_hips": 468,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 1,
+            "started": 1.8666666666666667,
+            "completed": 4.2
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 2,
+            "started": 4.6,
+            "completed": 6.666666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 3,
+            "started": 6.866666666666666,
+            "completed": 8.8
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 4,
+            "started": 9.266666666666666,
+            "completed": 11.066666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 5,
+            "started": 11.666666666666666,
+            "completed": 13.4
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 6,
+            "started": 13.933333333333334,
+            "completed": 16.0
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 7,
+            "started": 16.53333333333333,
+            "completed": 18.466666666666665
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 8,
+            "started": 19.0,
+            "completed": 20.866666666666667
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 9,
+            "started": 21.466666666666665,
+            "completed": 23.333333333333332
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 10,
+            "started": 23.933333333333334,
+            "completed": 25.933333333333334
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 11,
+            "started": 26.4,
+            "completed": 28.266666666666666
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        },
+        {
+          "cycle": {
+            "exercise": "Push-up",
+            "number": 12,
+            "started": 29.133333333333333,
+            "completed": 31.0
+          },
+          "status": "GOOD",
+          "satisfied": [
+            "push_flex_deg",
+            "push_extension_deg",
+            "push_alignment_deg",
+            "push_plank_knee_deg",
+            "push_knee_clearance_torsos"
+          ],
+          "failed": [],
+          "unavailable": []
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "13475123_1280_720_60fps.mp4",
+    "exercise": "Pull-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "31622705 low frontal swinging pull-ups",
+    "bar_y": 0.11527777777777778,
+    "mode": "manual",
+    "source_frames": 1098,
+    "source_duration_s": 18.3183,
+    "processed_frames": 1098,
+    "timestamp_span_s": 18.301616666666668,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 3,
+    "exercise_cycles": 3,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 3,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 53.97003035809067,
+    "warning_frames": {
+      "Use a side view": 301,
+      "Tracking lost": 2,
+      "Required joints unreliable": 8,
+      "Need visible overhead grip": 113
+    },
+    "unavailable_rules": {
+      "pull_extension_deg": 3,
+      "chin_over_bar": 3,
+      "chin_in_hang": 3,
+      "pull_max_swing_torsos": 3,
+      "cycle_coverage": 3
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "098a31ac85da44421f1a117e036fc4f0f706108e94e6d340c00ed938be2d5803",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Pull-up": 676,
+        "Jumping Jack": 44,
+        "Push-up": 17,
+        "Squat": 100,
+        "Missing": 261
+      },
+      "active": {
+        "Pull-up": 1098
+      },
+      "phase": {
+        "Hanging": 353,
+        "Pulling": 120,
+        "Upper": 175,
+        "Returning": 75,
+        "Find start": 375
+      },
+      "pose": {
+        "tracked": 1096,
+        "world_shoulders_hips": 1096,
+        "face_enabled": 1098,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 1,
+            "started": 0.15015,
+            "completed": 1.9185833333333335
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 2,
+            "started": 10.01,
+            "completed": 11.96195
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 3,
+            "started": 12.045366666666668,
+            "completed": 13.079733333333333
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "13475123_1280_720_60fps.mp4",
+    "exercise": "Pull-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "31622705 low frontal swinging pull-ups",
+    "bar_y": 0.11527777777777778,
+    "mode": "automatic",
+    "source_frames": 1098,
+    "source_duration_s": 18.3183,
+    "processed_frames": 1098,
+    "timestamp_span_s": 18.301616666666668,
+    "unknown_frames": 445,
+    "unknown_pct": 40.52823315118397,
+    "wrong_active_frames": 66,
+    "wrong_active_labels": {
+      "Squat": 42,
+      "Jumping Jack": 18,
+      "Push-up": 6
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 43.21540664102461,
+    "warning_frames": {
+      "Recognition gap": 445,
+      "Gathering votes": 13,
+      "Use a side view": 81,
+      "Low score": 138,
+      "Split vote": 25,
+      "Missing landmarks": 261,
+      "Required joints unreliable": 16,
+      "Confirming exercise": 46,
+      "Small score margin": 8,
+      "Tracking lost": 2,
+      "Need horizontal torso": 5
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "098a31ac85da44421f1a117e036fc4f0f706108e94e6d340c00ed938be2d5803",
+    "clip_quality_label": null,
+    "wrong_active_pct": 6.0109289617486334,
+    "observations": {
+      "raw": {
+        "Pull-up": 676,
+        "Jumping Jack": 44,
+        "Push-up": 17,
+        "Squat": 100,
+        "Missing": 261
+      },
+      "active": {
+        "Unknown": 445,
+        "Pull-up": 587,
+        "Squat": 42,
+        "Jumping Jack": 18,
+        "Push-up": 6
+      },
+      "phase": {
+        "Find start": 548,
+        "Hanging": 378,
+        "Pulling": 79,
+        "Upper": 93
+      },
+      "pose": {
+        "tracked": 1096,
+        "world_shoulders_hips": 1096,
+        "face_enabled": 1098,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "14293451-hd_1280_720_30fps.mp4",
+    "exercise": "Pull-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Fixed oblique full-body pull-ups local bar height at face",
+    "bar_y": 0.4652777777777778,
+    "mode": "manual",
+    "source_frames": 618,
+    "source_duration_s": 20.6,
+    "processed_frames": 618,
+    "timestamp_span_s": 20.566666666666666,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 1,
+    "exercise_cycles": 1,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 1,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 50.731557306393064,
+    "warning_frames": {
+      "Required joints unreliable": 3,
+      "Need visible overhead grip": 49,
+      "Use a side view": 9
+    },
+    "unavailable_rules": {
+      "pull_extension_deg": 1,
+      "chin_over_bar": 1,
+      "chin_in_hang": 1,
+      "pull_max_swing_torsos": 1,
+      "cycle_coverage": 1
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "4a1d4aa67f6b91a391d8afa2636b7eef89a3606e3ca63c3c60e403dfd3b0413d",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Missing": 3,
+        "Pull-up": 493,
+        "Jumping Jack": 59,
+        "Squat": 28,
+        "Russian Twist": 11,
+        "Push-up": 24
+      },
+      "active": {
+        "Pull-up": 618
+      },
+      "phase": {
+        "Find start": 106,
+        "Hanging": 375,
+        "Pulling": 12,
+        "Upper": 118,
+        "Returning": 7
+      },
+      "pose": {
+        "tracked": 618,
+        "world_shoulders_hips": 618,
+        "face_enabled": 618,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 1,
+            "started": 5.033333333333333,
+            "completed": 7.7
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "14293451-hd_1280_720_30fps.mp4",
+    "exercise": "Pull-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Fixed oblique full-body pull-ups local bar height at face",
+    "bar_y": 0.4652777777777778,
+    "mode": "automatic",
+    "source_frames": 618,
+    "source_duration_s": 20.6,
+    "processed_frames": 618,
+    "timestamp_span_s": 20.566666666666666,
+    "unknown_frames": 194,
+    "unknown_pct": 31.3915857605178,
+    "wrong_active_frames": 41,
+    "wrong_active_labels": {
+      "Squat": 15,
+      "Jumping Jack": 18,
+      "Push-up": 8
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 54.683759672730254,
+    "warning_frames": {
+      "Recognition gap": 194,
+      "Missing landmarks": 3,
+      "Gathering votes": 7,
+      "Low score": 145,
+      "Need visible overhead grip": 13,
+      "Split vote": 29,
+      "Use a side view": 2,
+      "Confirming exercise": 38,
+      "Small score margin": 10,
+      "Use a front view": 1,
+      "Need horizontal torso": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "4a1d4aa67f6b91a391d8afa2636b7eef89a3606e3ca63c3c60e403dfd3b0413d",
+    "clip_quality_label": null,
+    "wrong_active_pct": 6.634304207119741,
+    "observations": {
+      "raw": {
+        "Missing": 3,
+        "Pull-up": 493,
+        "Jumping Jack": 59,
+        "Squat": 28,
+        "Russian Twist": 11,
+        "Push-up": 24
+      },
+      "active": {
+        "Unknown": 194,
+        "Pull-up": 383,
+        "Squat": 15,
+        "Jumping Jack": 18,
+        "Push-up": 8
+      },
+      "phase": {
+        "Find start": 142,
+        "Hanging": 360,
+        "Pulling": 12,
+        "Upper": 86,
+        "Standing": 18
+      },
+      "pose": {
+        "tracked": 618,
+        "world_shoulders_hips": 618,
+        "face_enabled": 618,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "17049474_720_1280_30fps.mp4",
+    "exercise": "Pull-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "39954722 rear view face visibility control",
+    "bar_y": 0.41796875,
+    "mode": "manual",
+    "source_frames": 602,
+    "source_duration_s": 20.086733333333335,
+    "processed_frames": 602,
+    "timestamp_span_s": 20.05336666666667,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 5,
+    "exercise_cycles": 5,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 5,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 43.846533292461615,
+    "warning_frames": {
+      "Need visible overhead grip": 33
+    },
+    "unavailable_rules": {
+      "pull_extension_deg": 4,
+      "chin_over_bar": 5,
+      "chin_in_hang": 5,
+      "pull_max_swing_torsos": 5,
+      "cycle_coverage": 5
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "bb2862a723f022a598b9d0fa96e33ea0e2986d13d16a22ec959c233d8a129d65",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Jumping Jack": 11,
+        "Pull-up": 479,
+        "Squat": 109,
+        "Push-up": 3
+      },
+      "active": {
+        "Pull-up": 602
+      },
+      "phase": {
+        "Hanging": 219,
+        "Pulling": 24,
+        "Upper": 303,
+        "Returning": 56
+      },
+      "pose": {
+        "tracked": 602,
+        "world_shoulders_hips": 602,
+        "face_enabled": 602,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 1,
+            "started": 0.3003,
+            "completed": 2.8361666666666667
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 2,
+            "started": 4.137466666666667,
+            "completed": 7.040366666666667
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 3,
+            "started": 8.441766666666666,
+            "completed": 11.077733333333335
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 4,
+            "started": 12.545866666666667,
+            "completed": 15.382033333333334
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [],
+          "failed": [],
+          "unavailable": [
+            "pull_extension_deg",
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Pull-up",
+            "number": 5,
+            "started": 16.850166666666667,
+            "completed": 19.7197
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "pull_extension_deg"
+          ],
+          "failed": [],
+          "unavailable": [
+            "chin_over_bar",
+            "chin_in_hang",
+            "pull_max_swing_torsos",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "17049474_720_1280_30fps.mp4",
+    "exercise": "Pull-up",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "39954722 rear view face visibility control",
+    "bar_y": 0.41796875,
+    "mode": "automatic",
+    "source_frames": 602,
+    "source_duration_s": 20.086733333333335,
+    "processed_frames": 602,
+    "timestamp_span_s": 20.05336666666667,
+    "unknown_frames": 264,
+    "unknown_pct": 43.85382059800664,
+    "wrong_active_frames": 10,
+    "wrong_active_labels": {
+      "Jumping Jack": 9,
+      "Squat": 1
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 43.36069287605225,
+    "warning_frames": {
+      "Recognition gap": 264,
+      "Low score": 242,
+      "Gathering votes": 19,
+      "Use a front view": 9,
+      "Split vote": 3,
+      "Need visible overhead grip": 7,
+      "Confirming exercise": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "bb2862a723f022a598b9d0fa96e33ea0e2986d13d16a22ec959c233d8a129d65",
+    "clip_quality_label": null,
+    "wrong_active_pct": 1.6611295681063123,
+    "observations": {
+      "raw": {
+        "Jumping Jack": 11,
+        "Pull-up": 479,
+        "Squat": 109,
+        "Push-up": 3
+      },
+      "active": {
+        "Unknown": 264,
+        "Jumping Jack": 9,
+        "Pull-up": 328,
+        "Squat": 1
+      },
+      "phase": {
+        "Find start": 282,
+        "Hanging": 200,
+        "Pulling": 93,
+        "Upper": 27
+      },
+      "pose": {
+        "tracked": 602,
+        "world_shoulders_hips": 602,
+        "face_enabled": 602,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "5025960-hd_720_1280_25fps.mp4",
+    "exercise": "Jumping Jack",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 576,
+    "source_duration_s": 23.04,
+    "processed_frames": 576,
+    "timestamp_span_s": 23.0,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 10,
+    "exercise_cycles": 10,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 10,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 39.97906591996237,
+    "warning_frames": {
+      "Use a front view": 127,
+      "Required joints unreliable": 12
+    },
+    "unavailable_rules": {
+      "jack_overhead": 10,
+      "jack_open_hip_widths": 8,
+      "jack_together_at_peak": 10,
+      "jack_mismatch_fraction": 5,
+      "cycle_coverage": 5
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "205908afe279e96ff08f9b555a86b1a07442c58dacce2108eadb2ceb476ecf6c",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Jumping Jack": 279,
+        "Push-up": 263,
+        "Pull-up": 12,
+        "Squat": 22
+      },
+      "active": {
+        "Jumping Jack": 576
+      },
+      "phase": {
+        "Find start": 35,
+        "Closed": 81,
+        "Opening": 105,
+        "Open": 283,
+        "Closing": 72
+      },
+      "pose": {
+        "tracked": 576,
+        "world_shoulders_hips": 576,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 1,
+            "started": 1.68,
+            "completed": 3.4
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak",
+            "jack_mismatch_fraction",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 2,
+            "started": 3.7600000000000007,
+            "completed": 5.48
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak",
+            "jack_mismatch_fraction",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 3,
+            "started": 5.8,
+            "completed": 7.640000000000001
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak",
+            "jack_mismatch_fraction",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 4,
+            "started": 7.88,
+            "completed": 9.76
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths",
+            "jack_mismatch_fraction"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 5,
+            "started": 10.040000000000003,
+            "completed": 11.92
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths",
+            "jack_mismatch_fraction"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 6,
+            "started": 12.16,
+            "completed": 14.0
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak",
+            "jack_mismatch_fraction",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 7,
+            "started": 14.32,
+            "completed": 16.2
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_open_hip_widths",
+            "jack_closed_hip_widths",
+            "jack_mismatch_fraction"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_together_at_peak"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 8,
+            "started": 16.44,
+            "completed": 18.28
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak",
+            "jack_mismatch_fraction",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 9,
+            "started": 18.56,
+            "completed": 20.44
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_open_hip_widths",
+            "jack_closed_hip_widths",
+            "jack_mismatch_fraction"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_together_at_peak"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Jumping Jack",
+            "number": 10,
+            "started": 20.72,
+            "completed": 22.64
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "jack_closed_hip_widths",
+            "jack_mismatch_fraction"
+          ],
+          "failed": [],
+          "unavailable": [
+            "jack_overhead",
+            "jack_open_hip_widths",
+            "jack_together_at_peak"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "5025960-hd_720_1280_25fps.mp4",
+    "exercise": "Jumping Jack",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 576,
+    "source_duration_s": 23.04,
+    "processed_frames": 576,
+    "timestamp_span_s": 23.0,
+    "unknown_frames": 360,
+    "unknown_pct": 62.5,
+    "wrong_active_frames": 73,
+    "wrong_active_labels": {
+      "Push-up": 73
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 41.81045102936067,
+    "warning_frames": {
+      "Recognition gap": 360,
+      "Low score": 305,
+      "Gathering votes": 20,
+      "Use a front view": 15,
+      "Split vote": 34,
+      "Confirming exercise": 52,
+      "Need horizontal torso": 21,
+      "Required joints unreliable": 5,
+      "Small score margin": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "205908afe279e96ff08f9b555a86b1a07442c58dacce2108eadb2ceb476ecf6c",
+    "clip_quality_label": null,
+    "wrong_active_pct": 12.67361111111111,
+    "observations": {
+      "raw": {
+        "Jumping Jack": 279,
+        "Push-up": 263,
+        "Pull-up": 12,
+        "Squat": 22
+      },
+      "active": {
+        "Unknown": 360,
+        "Jumping Jack": 143,
+        "Push-up": 73
+      },
+      "phase": {
+        "Find start": 414,
+        "Closed": 92,
+        "Opening": 30,
+        "Open": 40
+      },
+      "pose": {
+        "tracked": 576,
+        "world_shoulders_hips": 576,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "10315299-hd_1280_720_30fps.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "oblique medicine-ball twist",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 564,
+    "source_duration_s": 18.8188,
+    "processed_frames": 564,
+    "timestamp_span_s": 18.785433333333334,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 65.37740285314305,
+    "warning_frames": {
+      "Keep hands together": 152,
+      "Use a front view": 71,
+      "Required joints unreliable": 300
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "58b58ca2f7e1322db0ed92323aa0e343be1e5a97305680c1a10bd1289e1bcd66",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Russian Twist": 463,
+        "Push-up": 12,
+        "Missing": 89
+      },
+      "active": {
+        "Russian Twist": 564
+      },
+      "phase": {
+        "Find start": 564
+      },
+      "pose": {
+        "tracked": 564,
+        "world_shoulders_hips": 564,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "10315299-hd_1280_720_30fps.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "oblique medicine-ball twist",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 564,
+    "source_duration_s": 18.8188,
+    "processed_frames": 564,
+    "timestamp_span_s": 18.785433333333334,
+    "unknown_frames": 131,
+    "unknown_pct": 23.22695035460993,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 60.762373195333,
+    "warning_frames": {
+      "Recognition gap": 131,
+      "Low score": 27,
+      "Gathering votes": 14,
+      "Keep hands together": 127,
+      "Use a front view": 68,
+      "Required joints unreliable": 199,
+      "Missing landmarks": 89,
+      "Small score margin": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "58b58ca2f7e1322db0ed92323aa0e343be1e5a97305680c1a10bd1289e1bcd66",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Russian Twist": 463,
+        "Push-up": 12,
+        "Missing": 89
+      },
+      "active": {
+        "Unknown": 131,
+        "Russian Twist": 433
+      },
+      "phase": {
+        "Find start": 564
+      },
+      "pose": {
+        "tracked": 564,
+        "world_shoulders_hips": 564,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "6455345-hd_720_1280_24fps.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "oblique medicine-ball twist",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 240,
+    "source_duration_s": 10.01,
+    "processed_frames": 240,
+    "timestamp_span_s": 9.968291666666666,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 58.600713513057386,
+    "warning_frames": {
+      "Keep hands together": 100
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "ddedf8b926a13a951225c2eee650277f41fa4f318c7d25c865c933ce510391da",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Russian Twist": 164,
+        "Pull-up": 60,
+        "Push-up": 13,
+        "Squat": 3
+      },
+      "active": {
+        "Russian Twist": 240
+      },
+      "phase": {
+        "Find start": 32,
+        "Center": 21,
+        "First side": 187
+      },
+      "pose": {
+        "tracked": 240,
+        "world_shoulders_hips": 240,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {
+        "calls": 124,
+        "neutral_set": 118,
+        "seated_support_available": 0,
+        "seated_support_missing": 124,
+        "twist_start_lean_deg_available": 2,
+        "twist_start_lean_deg_missing": 0,
+        "twist_center_rotation_deg_available": 2,
+        "twist_center_rotation_deg_missing": 2,
+        "twist_right_rotation_deg_available": 21,
+        "twist_right_rotation_deg_missing": 0
+      },
+      "events": []
+    }
+  },
+  {
+    "video_path": "6455345-hd_720_1280_24fps.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "oblique medicine-ball twist",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 240,
+    "source_duration_s": 10.01,
+    "processed_frames": 240,
+    "timestamp_span_s": 9.968291666666666,
+    "unknown_frames": 97,
+    "unknown_pct": 40.416666666666664,
+    "wrong_active_frames": 3,
+    "wrong_active_labels": {
+      "Pull-up": 3
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 56.14458695016385,
+    "warning_frames": {
+      "Recognition gap": 97,
+      "Gathering votes": 6,
+      "Low score": 86,
+      "Keep hands together": 79,
+      "Confirming exercise": 3,
+      "Split vote": 4,
+      "Small score margin": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "ddedf8b926a13a951225c2eee650277f41fa4f318c7d25c865c933ce510391da",
+    "clip_quality_label": null,
+    "wrong_active_pct": 1.25,
+    "observations": {
+      "raw": {
+        "Russian Twist": 164,
+        "Pull-up": 60,
+        "Push-up": 13,
+        "Squat": 3
+      },
+      "active": {
+        "Unknown": 97,
+        "Russian Twist": 140,
+        "Pull-up": 3
+      },
+      "phase": {
+        "Find start": 74,
+        "Center": 166
+      },
+      "pose": {
+        "tracked": 240,
+        "world_shoulders_hips": 240,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {
+        "calls": 52,
+        "neutral_set": 27,
+        "seated_support_available": 29,
+        "seated_support_missing": 23,
+        "twist_start_lean_deg_available": 15,
+        "twist_start_lean_deg_missing": 0,
+        "twist_center_rotation_deg_available": 15,
+        "twist_center_rotation_deg_missing": 12
+      },
+      "events": []
+    }
+  },
+  {
+    "video_path": "6892537-hd_1280_720_25fps.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 284,
+    "source_duration_s": 11.36,
+    "processed_frames": 284,
+    "timestamp_span_s": 11.32,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 42.97695639851576,
+    "warning_frames": {
+      "Use a front view": 114,
+      "Keep hands together": 57,
+      "Required joints unreliable": 111
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "00f9aedb7e752fed4ac1787043a43183373d5ee3f3bf0a164fd144daf59d784d",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Squat": 65,
+        "Russian Twist": 212,
+        "Push-up": 2,
+        "Pull-up": 5
+      },
+      "active": {
+        "Russian Twist": 284
+      },
+      "phase": {
+        "Find start": 284
+      },
+      "pose": {
+        "tracked": 284,
+        "world_shoulders_hips": 284,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "6892537-hd_1280_720_25fps.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "Pexels",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 284,
+    "source_duration_s": 11.36,
+    "processed_frames": 284,
+    "timestamp_span_s": 11.32,
+    "unknown_frames": 118,
+    "unknown_pct": 41.54929577464789,
+    "wrong_active_frames": 39,
+    "wrong_active_labels": {
+      "Squat": 39
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 39.29951516841227,
+    "warning_frames": {
+      "Recognition gap": 118,
+      "Gathering votes": 8,
+      "Small score margin": 8,
+      "Low score": 95,
+      "Split vote": 7,
+      "Confirming exercise": 28,
+      "Keep hands together": 24,
+      "Use a front view": 43,
+      "Required joints unreliable": 31
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "00f9aedb7e752fed4ac1787043a43183373d5ee3f3bf0a164fd144daf59d784d",
+    "clip_quality_label": null,
+    "wrong_active_pct": 13.732394366197184,
+    "observations": {
+      "raw": {
+        "Squat": 65,
+        "Russian Twist": 212,
+        "Push-up": 2,
+        "Pull-up": 5
+      },
+      "active": {
+        "Unknown": 118,
+        "Squat": 39,
+        "Russian Twist": 127
+      },
+      "phase": {
+        "Find start": 284
+      },
+      "pose": {
+        "tracked": 284,
+        "world_shoulders_hips": 284,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {},
+      "events": []
+    }
+  },
+  {
+    "video_path": "DOD_107871763-1024x576-1769k.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "DVIDS timed front-view challenge with broadcast graphics and raised feet",
+    "bar_y": null,
+    "mode": "manual",
+    "source_frames": 1799,
+    "source_duration_s": 60.026633333333336,
+    "processed_frames": 1799,
+    "timestamp_span_s": 59.99326666666667,
+    "unknown_frames": 0,
+    "unknown_pct": 0.0,
+    "wrong_active_frames": 0,
+    "wrong_active_labels": {},
+    "total_cycles": 2,
+    "exercise_cycles": 2,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 2,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 73.0783266535681,
+    "warning_frames": {
+      "Tracking lost": 343,
+      "Required joints unreliable": 1231,
+      "Keep hands together": 374
+    },
+    "unavailable_rules": {
+      "twist_right_reach": 2,
+      "twist_left_reach": 2,
+      "twist_right_rotation_deg": 2,
+      "twist_left_rotation_deg": 2,
+      "seated_support": 2,
+      "twist_hand_gap_hip_widths": 2,
+      "cycle_coverage": 2
+    },
+    "status": "ok",
+    "error": null,
+    "sha256": "51c0728308b3c33f3c42aed369f9dfd8aee900f6c779865980c943ee67478e52",
+    "clip_quality_label": null,
+    "wrong_active_pct": 0.0,
+    "observations": {
+      "raw": {
+        "Missing": 1146,
+        "Squat": 72,
+        "Jumping Jack": 17,
+        "Russian Twist": 554,
+        "Push-up": 9,
+        "Pull-up": 1
+      },
+      "active": {
+        "Russian Twist": 1799
+      },
+      "phase": {
+        "Find start": 1575,
+        "Center": 13,
+        "First side": 96,
+        "Opposite side": 115
+      },
+      "pose": {
+        "tracked": 1456,
+        "world_shoulders_hips": 1456,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {
+        "calls": 85,
+        "neutral_set": 85,
+        "seated_support_available": 38,
+        "seated_support_missing": 47,
+        "twist_start_lean_deg_available": 4,
+        "twist_start_lean_deg_missing": 0,
+        "twist_center_rotation_deg_available": 6,
+        "twist_center_rotation_deg_missing": 0,
+        "twist_right_rotation_deg_available": 42,
+        "twist_right_rotation_deg_missing": 0,
+        "twist_left_rotation_deg_available": 28,
+        "twist_left_rotation_deg_missing": 0
+      },
+      "events": [
+        {
+          "cycle": {
+            "exercise": "Russian Twist",
+            "number": 1,
+            "started": 42.10873333333333,
+            "completed": 43.47676666666667
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "twist_center_hip_widths",
+            "twist_center_rotation_deg",
+            "twist_start_lean_deg"
+          ],
+          "failed": [],
+          "unavailable": [
+            "twist_right_reach",
+            "twist_left_reach",
+            "twist_right_rotation_deg",
+            "twist_left_rotation_deg",
+            "seated_support",
+            "twist_hand_gap_hip_widths",
+            "cycle_coverage"
+          ]
+        },
+        {
+          "cycle": {
+            "exercise": "Russian Twist",
+            "number": 2,
+            "started": 43.47676666666667,
+            "completed": 47.58086666666667
+          },
+          "status": "UNASSESSABLE",
+          "satisfied": [
+            "twist_center_hip_widths",
+            "twist_center_rotation_deg"
+          ],
+          "failed": [
+            "twist_start_lean_deg"
+          ],
+          "unavailable": [
+            "twist_right_reach",
+            "twist_left_reach",
+            "twist_right_rotation_deg",
+            "twist_left_rotation_deg",
+            "seated_support",
+            "twist_hand_gap_hip_widths",
+            "cycle_coverage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "video_path": "DOD_107871763-1024x576-1769k.mp4",
+    "exercise": "Russian Twist",
+    "human_count": null,
+    "human_good": null,
+    "human_bad": null,
+    "notes": "DVIDS timed front-view challenge with broadcast graphics and raised feet",
+    "bar_y": null,
+    "mode": "automatic",
+    "source_frames": 1799,
+    "source_duration_s": 60.026633333333336,
+    "processed_frames": 1799,
+    "timestamp_span_s": 59.99326666666667,
+    "unknown_frames": 1476,
+    "unknown_pct": 82.04558087826571,
+    "wrong_active_frames": 19,
+    "wrong_active_labels": {
+      "Jumping Jack": 6,
+      "Squat": 12,
+      "Push-up": 1
+    },
+    "total_cycles": 0,
+    "exercise_cycles": 0,
+    "good": 0,
+    "bad": 0,
+    "unassessable": 0,
+    "total_count_error": null,
+    "exercise_count_error": null,
+    "processing_fps": 73.19624650333076,
+    "warning_frames": {
+      "Tracking lost": 343,
+      "Recognition gap": 1476,
+      "Missing landmarks": 1146,
+      "Low score": 226,
+      "Gathering votes": 74,
+      "Split vote": 27,
+      "Confirming exercise": 33,
+      "Keep hands together": 47,
+      "Required joints unreliable": 156,
+      "Small score margin": 3,
+      "Need horizontal torso": 1
+    },
+    "unavailable_rules": {},
+    "status": "ok",
+    "error": null,
+    "sha256": "51c0728308b3c33f3c42aed369f9dfd8aee900f6c779865980c943ee67478e52",
+    "clip_quality_label": null,
+    "wrong_active_pct": 1.056142301278488,
+    "observations": {
+      "raw": {
+        "Missing": 1146,
+        "Squat": 72,
+        "Jumping Jack": 17,
+        "Russian Twist": 554,
+        "Push-up": 9,
+        "Pull-up": 1
+      },
+      "active": {
+        "Unknown": 1476,
+        "Jumping Jack": 6,
+        "Russian Twist": 304,
+        "Squat": 12,
+        "Push-up": 1
+      },
+      "phase": {
+        "Find start": 1688,
+        "Closed": 55,
+        "Center": 8,
+        "First side": 48
+      },
+      "pose": {
+        "tracked": 1456,
+        "world_shoulders_hips": 1456,
+        "face_enabled": 0,
+        "chin_available": 0
+      },
+      "twist": {
+        "calls": 11,
+        "neutral_set": 11,
+        "seated_support_available": 11,
+        "seated_support_missing": 0,
+        "twist_start_lean_deg_available": 2,
+        "twist_start_lean_deg_missing": 0,
+        "twist_center_rotation_deg_available": 2,
+        "twist_center_rotation_deg_missing": 0,
+        "twist_right_rotation_deg_available": 7,
+        "twist_right_rotation_deg_missing": 0
+      },
+      "events": []
+    }
+  }
+]
