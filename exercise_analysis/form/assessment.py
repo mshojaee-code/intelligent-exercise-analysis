@@ -313,15 +313,14 @@ class FormAssessor:
         rules = RULES[name]
         for rule in rules:
             metric = self.metrics.get(rule.key, Metric())
-            # Seeing a target once without a confirming pair leaves peak attainment uncertain.
-            isolated_peak = (rule.peak_target and metric.target_seen and metric.value is not None
-                             and not self.passes(rule, metric.value))
-            # Occlusion can hide the only chin crossing or shoulder turn.
-            auxiliary_peak = rule.key in ("chin_over_bar", "twist_right_rotation_deg", "twist_left_rotation_deg")
-            missed_peak = (auxiliary_peak and metric.observed < metric.eligible and metric.value is not None
-                           and not self.passes(rule, metric.value))
-            if (isolated_peak or missed_peak or metric.value is None
-                    or metric.observed < self.cfg["min_coverage"] * metric.eligible
+            # A peak is existential. A consecutive reliable pair proves attainment
+            # even if another part of the phase is hidden. A hidden peak cannot
+            # prove failure. Whole-cycle, endpoint and continuous rules stay separate.
+            paired_peak = rule.peak_target and metric.value is not None and self.passes(rule, metric.value)
+            uncertain_peak = rule.peak_target and not paired_peak and (
+                metric.target_seen or metric.observed < metric.eligible)
+            if (metric.value is None or uncertain_peak
+                    or (not paired_peak and metric.observed < self.cfg["min_coverage"] * metric.eligible)
                     or (rule.reduction.startswith("endpoints") and metric.observed != 2)):
                 unavailable.append(rule.key)
                 if rule.essential:

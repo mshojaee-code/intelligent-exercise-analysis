@@ -199,6 +199,16 @@ class FormTests(unittest.TestCase):
             result = self.step("Jumping Jack", v, changes={"LEFT_EYE": Landmark(.46,.20,.1)})
         self.assertEqual(result.status, "UNASSESSABLE")
 
+    def test_jack_distinguishes_observed_and_occluded_peak(self):
+        for peak_height, expected in ((.10, "GOOD"), (.22, "UNASSESSABLE")):
+            for i, v in enumerate([0, 1, 1, 1, 1, 0]):
+                changes = {"RIGHT_WRIST": Landmark(.7, peak_height, 1)} if v else {}
+                if i in (3, 4):
+                    changes["LEFT_EYE"] = Landmark(.46, .20, .1)
+                result = self.step("Jumping Jack", v, changes=changes)
+            self.assertEqual(result.status, expected)
+            self.assertEqual(result.evidence["jack_overhead"]["observed"], 2)
+
     def test_jack_width_jitter_around_target_is_uncertain(self):
         for index, v in enumerate(MOTION["Jumping Jack"]):
             width = .16 * (2.01 if index == 2 else 1.99)
