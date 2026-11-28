@@ -15,7 +15,7 @@ from exercise_analysis.capture.video import open_frames
 from exercise_analysis.features.joint_angles import extract
 from exercise_analysis.pose.mediapipe_adapter import DEFAULT_FACE, PoseEstimator
 from exercise_analysis.ui.skeleton import draw_skeleton
-from exercise_analysis.form.geometry import motion_angles
+from exercise_analysis.form.geometry import horizontal_torso, motion_angles, projected
 from exercise_analysis.preprocessing.ema import AngleEMA
 
 
@@ -130,7 +130,9 @@ def main():
                 canvas = render(frame, pose, raw, smooth, visibility, recognition=args.recognize, counting=args.count, form=args.form)
                 if args.recognize:
                     prediction = classifier.predict_scored(raw)
-                    decision = controls.update(frame.seconds, prediction)
+                    h, w = frame.bgr.shape[:2]
+                    upright = horizontal_torso(projected(pose, w / h, visibility)) is False
+                    decision = controls.update(frame.seconds, prediction, upright=upright)
                     draw_recognition(canvas, frame.bgr.shape[1], prediction, decision, exercises)
                     raw_counts[prediction.exercise or "Unknown"] += 1
                     active_counts[decision.active] += 1

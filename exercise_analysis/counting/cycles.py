@@ -6,6 +6,7 @@ from math import dist, isfinite
 from exercise_analysis.confidence.recognition import Decision
 from exercise_analysis.features.joint_angles import AngleFrame
 from exercise_analysis.pose import PoseFrame
+from exercise_analysis.form.geometry import horizontal_torso
 
 
 # Arithmetic tolerance for inclusive boundaries in degrees or normalized widths.
@@ -117,8 +118,7 @@ def measurement(exercise, pose, angles, config, visibility, aspect):
     if exercise in FLEXION:
         if hip_span > config["max_side_hip_width_over_torso"] * torso:
             return None, "Use a side view"
-        horizontal = abs(hip[0] - shoulder[0]) >= abs(hip[1] - shoulder[1])
-        if exercise == "Push-up" and not horizontal:
+        if exercise == "Push-up" and not horizontal_torso(points):
             return None, "Need horizontal torso"
         if exercise == "Pull-up" and points["LEFT_WRIST"][1] >= shoulder[1]:
             return None, "Need visible overhead grip"

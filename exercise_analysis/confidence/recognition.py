@@ -51,7 +51,7 @@ class Recognition:
             return Decision(self.confirmed, "Auto", "Recent consensus", True)
         return Decision("Unknown", "Auto", reason, True)
 
-    def update(self, seconds: float, prediction: Prediction) -> Decision:
+    def update(self, seconds: float, prediction: Prediction, *, upright=False) -> Decision:
         if not isfinite(seconds) or seconds <= self.last_time:
             raise ValueError("Frame timestamps must be finite and strictly increasing")
         self.last_time = seconds
@@ -60,21 +60,26 @@ class Recognition:
         valid = not prediction.missing_input
         if self.manual is not None:
             return Decision(self.manual, "Manual", "Operator selection", valid)
+        if upright and self.confirmed == "Push-up":
+            self.confirmed = None
         if not valid:
             return Decision("Unknown", "Auto", "Missing landmarks", False)
+        if upright and prediction.exercise == "Push-up":
+            return self.uncertain(seconds, "Need horizontal torso")
         if prediction.top_score < self.min_score:
             return self.uncertain(seconds, "Low score")
         if prediction.margin < self.min_margin:
             return self.uncertain(seconds, "Small score margin")
 
         self.votes.append((seconds, prediction.exercise))
-        if len(self.votes) < self.min_votes:
+        counts = Counter(label for _, label in self.votes if not (upright and label == "Push-up"))
+        support = counts.total()
+        if support < self.min_votes:
             return self.uncertain(seconds, "Gathering votes")
-        counts = Counter(label for _, label in self.votes)
         leaders = counts.most_common(2)
         winner, count = leaders[0]
         tied = len(leaders) == 2 and count == leaders[1][1]
-        if tied or count / len(self.votes) < self.min_share:
+        if tied or count / support < self.min_share:
             return self.uncertain(seconds, "Split vote")
         if winner == prediction.exercise:
             self.confirmed, self.last_support = winner, seconds

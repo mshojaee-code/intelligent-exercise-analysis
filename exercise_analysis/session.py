@@ -10,7 +10,7 @@ from exercise_analysis.confidence.recognition import Decision, Recognition
 from exercise_analysis.counting.cycles import CountState, SessionCounter
 from exercise_analysis.features.joint_angles import Angles, extract
 from exercise_analysis.form.assessment import Assessment, FormAssessor
-from exercise_analysis.form.geometry import motion_angles
+from exercise_analysis.form.geometry import horizontal_torso, motion_angles, projected
 from exercise_analysis.preprocessing.ema import AngleEMA
 from exercise_analysis.reporting.summary import write_summary
 
@@ -61,7 +61,8 @@ class Session:
         raw = extract(pose, self.visibility)
         smooth = self.ema.update(raw)
         prediction = self.classifier.predict_scored(raw)
-        decision = self.controls.update(pose.seconds, prediction)
+        upright = horizontal_torso(projected(pose, aspect, self.visibility)) is False
+        decision = self.controls.update(pose.seconds, prediction, upright=upright)
         motion = self.motion_ema.update(motion_angles(pose, aspect, self.visibility))
         count = self.counter.update(decision, pose, motion, aspect)
         result = self.assessor.update(count, pose, motion, aspect)

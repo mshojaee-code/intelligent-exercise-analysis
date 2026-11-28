@@ -70,6 +70,16 @@ class RecognitionTests(unittest.TestCase):
         policy.select(None)
         self.assertEqual(policy.update(1.5, evidence(score=.5)).active, "Unknown")
 
+    def test_upright_pose_cannot_acquire_or_hold_pushup(self):
+        for i in range(5):
+            self.assertEqual(self.policy.update(i / 10, evidence("Push-up"), upright=True).active, "Unknown")
+        for t in (.5, .6, .7):
+            active = self.policy.update(t, evidence("Push-up")).active
+        self.assertEqual(active, "Push-up")
+        self.assertEqual(self.policy.update(.8, evidence("Push-up"), upright=True).active, "Unknown")
+        self.policy.select("Push-up")
+        self.assertEqual(self.policy.update(.9, evidence("Push-up"), upright=True).active, "Push-up")
+
     def test_manual_choices_preserve_validity_and_reset_auto(self):
         for t in (0, .01, .02):
             self.policy.update(t, evidence())

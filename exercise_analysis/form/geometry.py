@@ -11,6 +11,14 @@ def projected(pose, aspect, visibility):
             if p.reliable(visibility) and 0 <= p.x <= 1 and 0 <= p.y <= 1}
 
 
+def horizontal_torso(points):
+    """Projected plank prerequisite shared by recognition and the counter."""
+    hip, shoulder = points.get("LEFT_HIP"), points.get("LEFT_SHOULDER")
+    if hip is None or shoulder is None or hip == shoulder:
+        return None
+    return abs(hip[0] - shoulder[0]) >= abs(hip[1] - shoulder[1])
+
+
 def internal(a, vertex, b):
     if a is None or vertex is None or b is None:
         return None
