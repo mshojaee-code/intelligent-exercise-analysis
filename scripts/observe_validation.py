@@ -35,6 +35,7 @@ def observed_run(source, model, bundle, directory, *, on_frame, **options):
         pose_frames["world_shoulders_hips"] += all(
             side + "_" + joint in pose.world for side in ("LEFT", "RIGHT") for joint in ("SHOULDER", "HIP")
         )
+        pose_frames["face: " + pose.face_status] += 1
         pose_frames["face_enabled"] += estimator.face is not None
         pose_frames["chin_available"] += pose.chin_y is not None
         return pose

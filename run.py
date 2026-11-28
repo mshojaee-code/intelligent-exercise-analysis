@@ -29,7 +29,7 @@ def run(source, model, bundle, output, manual=None, headless=False, *, on_frame=
             estimator = resources.enter_context(PoseEstimator(model, settings["detection_confidence"],
                                                 settings["presence_confidence"], settings["tracking_confidence"],
                                                 face_model=face_model if bar_y is not None else None,
-                                                min_visibility=settings["min_visibility"]))
+                                                face_radius_scale=settings.get("face_radius_ear_spans"), min_visibility=settings["min_visibility"]))
             if not headless:
                 cv2.namedWindow(title, cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)
                 resources.callback(cv2.destroyAllWindows)

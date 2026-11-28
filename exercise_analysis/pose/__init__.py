@@ -21,3 +21,4 @@ class PoseFrame:
     landmarks: dict[str, Landmark]
     world: dict[str, tuple[float, float, float]] = field(default_factory=dict)
     chin_y: float | None = None
+    face_status: str = "Disabled"

@@ -120,7 +120,7 @@ def main():
         with open_frames(args.video if args.video is not None else args.webcam) as frames, PoseEstimator(
             args.model, settings["detection_confidence"], settings["presence_confidence"],
             settings["tracking_confidence"], face_model=args.face_model if args.form and args.bar_y is not None else None,
-            min_visibility=visibility,
+            face_radius_scale=settings.get("face_radius_ear_spans"), min_visibility=visibility,
         ) as estimator:
             started = perf_counter()
             for frame in frames:

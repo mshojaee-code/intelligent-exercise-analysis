@@ -8,7 +8,7 @@ from exercise_analysis.confidence.recognition import Decision
 from exercise_analysis.counting.cycles import SessionCounter
 from exercise_analysis.form.assessment import FormAssessor
 from exercise_analysis.pose import Landmark
-from exercise_analysis.pose.mediapipe_adapter import chin_height
+from exercise_analysis.pose.mediapipe_adapter import associated_chin, chin_height, face_region
 from exercise_analysis.session import config
 from test_counting import frame
 
@@ -80,6 +80,19 @@ class SourceFormTests(unittest.TestCase):
         for nose in (None, Landmark(.50,.30,.1), Landmark(.80,.30,1)):
             self.assertIsNone(chin_height([face], nose, .5))
         self.assertIsNone(chin_height([], Landmark(.50,.30,1), .5))
+
+    def test_face_crop_calibration_and_failed_association(self):
+        nose = Landmark(.25, .5, 1)
+        points = {"NOSE": nose, "LEFT_EAR": Landmark(.20, .5, 1)}
+        box = face_region(points, 200, 100, .5, 2.5)
+        self.assertEqual(box, (25, 25, 76, 76))
+        self.assertEqual(face_region({}, 200, 100, .5, 2.5), (0, 0, 200, 100))
+        face = [SimpleNamespace(x=.4, y=.5) for _ in range(478)]
+        face[10] = SimpleNamespace(x=.6, y=.2)
+        face[152] = SimpleNamespace(x=.5, y=.8)
+        self.assertAlmostEqual(associated_chin([face], nose, .5, box, 200, 100), .658)
+        self.assertIsNone(associated_chin([face], Landmark(.8, .5, 1), .5, box, 200, 100))
+        self.assertIsNone(associated_chin([], nose, .5, box, 200, 100))
 
     def twist(self, turn, *, pelvis_turn=0, occlude=False, shift_feet=False, reverse=False):
         samples = []
