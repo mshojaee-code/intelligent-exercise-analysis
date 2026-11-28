@@ -8,8 +8,47 @@ from pathlib import Path
 import subprocess
 import sys
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
+
+import validate_videos
+from scripts.observe_validation import observed_run
 
 BASELINE = Path("docs/experiments/real-video-11a")
+
+
+def compare(directory, baseline):
+    """Check accounting and retain one paired result per (filename, mode)."""
+    before = {(r["video_path"], r["mode"]): r for r in baseline}
+    metrics = ("exercise_cycles", "total_cycles", "good", "bad", "unassessable",
+               "unknown_pct", "wrong_active_pct", "processing_fps")
+    comparison = []
+    for current in json.loads((directory / "results.json").read_text()):
+        name, mode = Path(current["video_path"]).name, current["mode"]
+        old = before.pop((name, mode))
+        frames = current["processed_frames"]
+        if current["status"] != "ok" or frames != old["processed_frames"]:
+            raise ValueError(f"Incomplete replay: {name} {mode}")
+        with (directory / current["session_csv"]).open(newline="") as exported:
+            sessions = list(csv.DictReader(exported))
+        for key in ("total_cycles", "good", "bad", "unassessable"):
+            if sum(int(r[key]) for r in sessions) != current[key]:
+                raise ValueError(f"Session CSV disagrees on {key}: {name} {mode}")
+        if current["total_cycles"] != sum(current[k] for k in ("good", "bad", "unassessable")):
+            raise ValueError(f"Verdicts do not reconcile: {name} {mode}")
+        current["wrong_active_pct"] = 100 * current["wrong_active_frames"] / frames
+        row = dict(filename=name, exercise=current["exercise"], mode=mode, frames=frames)
+        for metric in metrics:
+            row["before_" + metric] = old[metric]
+            row["after_" + metric] = current[metric]
+        comparison.append(row)
+    if before:
+        raise ValueError("Missing clip/mode results")
+    path = directory / "comparison.csv"
+    with path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=comparison[0], lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(comparison)
+    return path
 
 
 def main():
@@ -39,8 +78,12 @@ def main():
             writer = csv.DictWriter(out, fieldnames=manifest[0])
             writer.writeheader()
             writer.writerows(manifest)
-        subprocess.run([sys.executable, "-m", "scripts.observe_validation", str(local),
-                        "--output", str(args.output)], check=True)
+        with patch.object(validate_videos, "run", observed_run):
+            directory, ok = validate_videos.validate(local, args.output, Path("models/pose_landmarker_lite.task"),
+                                                     Path("artifacts/kaggle-frame-v1"))
+        if not ok:
+            parser.exit(1, f"Replay failed. See {directory}/results.json\n")
+        print(f"Verified comparison: {compare(directory, baseline)}")
 
 
 if __name__ == "__main__":
